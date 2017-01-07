@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="NeuroApp:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/NeuroApp_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="NeuroApp/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="NeuroApp" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="JPA 2.0-2.0" />
+          <element id="library" level="project" name="openjpa-all-2.4.1" />
+          <element id="library" level="project" name="Spring-4.3.4.RELEASE" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

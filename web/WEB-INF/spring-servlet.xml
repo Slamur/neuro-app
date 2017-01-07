@@ -5,6 +5,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.slamur.app.neuro"/>
 
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="NeuroAppPersistenceUnit" />
+    </bean>
+
+    <bean id="entityManager"
+          class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    <!--class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />-->
+
     <bean id="algorithmDao" class="com.slamur.app.neuro.dao.AlgorithmDaoJPA"/>
 
     <bean id="algorithmService" class="com.slamur.app.neuro.service.AlgorithmServiceImpl">

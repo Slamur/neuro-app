@@ -36,6 +36,42 @@
                       </tr>
                   </c:forEach>
               </table>
+
+              <table class="table table-striped">
+                  <caption>Networks</caption>
+                  <thead>
+                  <tr>
+                      <td>Id</td>
+                      <td>Name</td>
+                      <td>Description</td>
+                  </tr>
+                  </thead>
+                  <c:forEach items="${networks}" var="network">
+                      <tr>
+                          <td>${network.id}</td>
+                          <td>${network.name}</td>
+                          <td>${network.description}</td>
+                      </tr>
+                  </c:forEach>
+              </table>
+
+              <table class="table table-striped">
+                  <caption>Parameter types</caption>
+                  <thead>
+                  <tr>
+                      <td>Id</td>
+                      <td>Name</td>
+                      <td>Description</td>
+                  </tr>
+                  </thead>
+                  <c:forEach items="${parameterTypes}" var="parameterType">
+                      <tr>
+                          <td>${parameterType.id}</td>
+                          <td>${parameterType.name}</td>
+                          <td>${parameterType.description}</td>
+                      </tr>
+                  </c:forEach>
+              </table>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="queries">

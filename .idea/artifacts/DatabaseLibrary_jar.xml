@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="DatabaseLibrary:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DatabaseLibrary_jar</output-path>
+    <root id="archive" name="DatabaseLibrary.jar">
+      <element id="module-output" name="DatabaseLibrary" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/DatabaseLibrary/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NeuroApp.iml" filepath="$PROJECT_DIR$/NeuroApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DatabaseLibrary/DatabaseLibrary.iml" filepath="$PROJECT_DIR$/DatabaseLibrary/DatabaseLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JPALibrary/JPALibrary.iml" filepath="$PROJECT_DIR$/JPALibrary/JPALibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NeuroApp/NeuroApp.iml" filepath="$PROJECT_DIR$/NeuroApp/NeuroApp.iml" />
+      <!--<module fileurl="file://$PROJECT_DIR$/NeuroAppProject.iml" filepath="$PROJECT_DIR$/NeuroAppProject.iml" />-->
     </modules>
   </component>
 </project>

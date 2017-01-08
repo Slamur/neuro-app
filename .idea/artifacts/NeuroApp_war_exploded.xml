@@ -2,7 +2,6 @@
   <artifact type="exploded-war" name="NeuroApp:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/NeuroApp_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="NeuroApp/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="NeuroApp" />
@@ -13,8 +12,10 @@
           <element id="library" level="project" name="Spring-4.3.4.RELEASE" />
           <element id="library" level="project" name="jstl-1.2" />
           <element id="library" level="project" name="postgresql-9.4.1212" />
+          <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/JPALibrary_jar/JPALibrary.jar" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="NeuroApp/web/Web" />
     </root>
   </artifact>
 </component>

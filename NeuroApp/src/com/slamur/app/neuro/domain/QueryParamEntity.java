@@ -1,12 +1,12 @@
-package com.slamur.app.neuro.model;
+package com.slamur.app.neuro.domain;
 
-import com.slamur.app.neuro.model.impl.NeuroEntityImpl;
+import com.slamur.lib.domain.impl.DomainEntityImpl;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "query_param", schema = "public", catalog = "neuroapp")
-public class QueryParamEntity extends NeuroEntityImpl {
+public class QueryParamEntity extends DomainEntityImpl {
 
     private int id;
     private int queryId;
@@ -73,9 +73,9 @@ public class QueryParamEntity extends NeuroEntityImpl {
     @Override
     public int hashCode() {
         int result = id;
-        result = NEURO_HASH_BASE * result + queryId;
-        result = NEURO_HASH_BASE * result + paramTypeId;
-        result = NEURO_HASH_BASE * result + (valueString != null ? valueString.hashCode() : 0);
+        result = ENTITY_HASH_BASE * result + queryId;
+        result = ENTITY_HASH_BASE * result + paramTypeId;
+        result = ENTITY_HASH_BASE * result + (valueString != null ? valueString.hashCode() : 0);
         return result;
     }
 }

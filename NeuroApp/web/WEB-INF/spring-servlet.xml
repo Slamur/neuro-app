@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com.slamur.app.neuro"/>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="NeuroAppPersistenceUnit" />
+    </bean>
+
+    <bean id="entityManager"
+          class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean id="persistenceAnnotation"
+          class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <bean id="algorithmDao" class="com.slamur.app.neuro.dao.jpa.AlgorithmDaoJPA"/>
+
+    <bean id="algorithmService" class="com.slamur.app.neuro.service.impl.AlgorithmServiceImpl">
+        <property name="algorithmDao" ref="algorithmDao"/>
+    </bean>
+
+    <bean id="networkDao" class="com.slamur.app.neuro.dao.jpa.NetworkDaoJPA"/>
+
+    <bean id="networkService" class="com.slamur.app.neuro.service.impl.NetworkServiceImpl">
+        <property name="networkDao" ref="networkDao"/>
+    </bean>
+
+    <bean id="parameterTypeDao" class="com.slamur.app.neuro.dao.jpa.ParameterTypeDaoJPA"/>
+
+    <bean id="parameterTypeService" class="com.slamur.app.neuro.service.impl.ParameterTypeServiceImpl">
+        <property name="parameterTypeDao" ref="parameterTypeDao"/>
+    </bean>
+
+    <bean id="queryDao" class="com.slamur.app.neuro.dao.jpa.QueryDaoJPA"/>
+
+    <bean id="queryService" class="com.slamur.app.neuro.service.impl.QueryServiceImpl">
+        <property name="queryDao" ref="queryDao"/>
+    </bean>
+
+    <bean id="queryParamDao" class="com.slamur.app.neuro.dao.jpa.QueryParamDaoJPA"/>
+
+    <bean id="queryParamService" class="com.slamur.app.neuro.service.impl.QueryParamServiceImpl">
+        <property name="queryParamDao" ref="queryParamDao"/>
+    </bean>
+</beans>

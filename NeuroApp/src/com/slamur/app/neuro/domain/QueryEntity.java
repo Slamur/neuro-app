@@ -1,13 +1,13 @@
-package com.slamur.app.neuro.model;
+package com.slamur.app.neuro.domain;
 
-import com.slamur.app.neuro.model.impl.NeuroEntityImpl;
+import com.slamur.lib.domain.impl.DomainEntityImpl;
 
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "query", schema = "public", catalog = "neuroapp")
-public class QueryEntity extends NeuroEntityImpl {
+public class QueryEntity extends DomainEntityImpl {
     public static int ADDED = 0, STARTED = ADDED + 1, ENDED = STARTED + 1;
 
     private int id;
@@ -98,11 +98,11 @@ public class QueryEntity extends NeuroEntityImpl {
     @Override
     public int hashCode() {
         int hash = id;
-        hash = NEURO_HASH_BASE * hash + (timeAdded != null ? timeAdded.hashCode() : 0);
-        hash = NEURO_HASH_BASE * hash + (timeStarted != null ? timeStarted.hashCode() : 0);
-        hash = NEURO_HASH_BASE * hash + (timeEnded != null ? timeEnded.hashCode() : 0);
-        hash = NEURO_HASH_BASE * hash + stateType;
-        hash = NEURO_HASH_BASE * hash + (resultString != null ? resultString.hashCode() : 0);
+        hash = ENTITY_HASH_BASE * hash + (timeAdded != null ? timeAdded.hashCode() : 0);
+        hash = ENTITY_HASH_BASE * hash + (timeStarted != null ? timeStarted.hashCode() : 0);
+        hash = ENTITY_HASH_BASE * hash + (timeEnded != null ? timeEnded.hashCode() : 0);
+        hash = ENTITY_HASH_BASE * hash + stateType;
+        hash = ENTITY_HASH_BASE * hash + (resultString != null ? resultString.hashCode() : 0);
         return hash;
     }
 }

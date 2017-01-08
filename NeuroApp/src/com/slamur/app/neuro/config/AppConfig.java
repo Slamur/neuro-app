@@ -1,4 +1,4 @@
-package com.slamur.app.neuro.util;
+package com.slamur.app.neuro.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

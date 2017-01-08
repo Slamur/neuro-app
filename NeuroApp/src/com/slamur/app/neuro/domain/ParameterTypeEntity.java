@@ -1,12 +1,12 @@
-package com.slamur.app.neuro.model;
+package com.slamur.app.neuro.domain;
 
-import com.slamur.app.neuro.model.impl.NeuroDictionaryEntityImpl;
+import com.slamur.lib.domain.impl.DomainDictionaryEntityImpl;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "parameter_type", schema = "public", catalog = "neuroapp")
-public class ParameterTypeEntity extends NeuroDictionaryEntityImpl {
+public class ParameterTypeEntity extends DomainDictionaryEntityImpl {
 
     private int id;
     private String name, description;

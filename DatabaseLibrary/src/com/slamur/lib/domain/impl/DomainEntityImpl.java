@@ -1,17 +1,15 @@
-package com.slamur.app.neuro.model.impl;
+package com.slamur.lib.domain.impl;
 
-import com.slamur.app.neuro.model.NeuroEntity;
+import com.slamur.lib.domain.DomainEntity;
 
-import javax.persistence.Column;
-
-public abstract class NeuroEntityImpl implements NeuroEntity {
+public abstract class DomainEntityImpl implements DomainEntity {
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
 
-        NeuroEntityImpl other = (NeuroEntityImpl) obj;
+        DomainEntityImpl other = (DomainEntityImpl) obj;
 
         return getId() == other.getId();
     }

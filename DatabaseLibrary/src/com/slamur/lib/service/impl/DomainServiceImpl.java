@@ -1,18 +1,16 @@
-package com.slamur.app.neuro.service;
+package com.slamur.lib.service.impl;
 
-import com.slamur.app.neuro.dao.NeuroDao;
-import com.slamur.app.neuro.model.NeuroEntity;
+import com.slamur.lib.dao.DomainDao;
+import com.slamur.lib.domain.DomainEntity;
+import com.slamur.lib.service.DomainService;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.List;
 
-public abstract class NeuroServiceImpl<
-        EntityType extends NeuroEntity,
-        EntityDaoType extends NeuroDao<EntityType>
+public abstract class DomainServiceImpl<
+        EntityType extends DomainEntity,
+        EntityDaoType extends DomainDao<EntityType>
         >
-        implements NeuroService<EntityType> {
+        implements DomainService<EntityType> {
 
     protected abstract EntityDaoType getEntityDao();
 

@@ -1,6 +1,6 @@
-package com.slamur.app.neuro.model;
+package com.slamur.lib.domain;
 
-public interface NeuroDictionaryEntity extends NeuroEntity {
+public interface DomainDictionaryEntity extends DomainEntity {
 
     String getName();
     void setName(String name);

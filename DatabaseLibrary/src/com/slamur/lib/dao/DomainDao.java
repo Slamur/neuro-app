@@ -1,10 +1,10 @@
-package com.slamur.app.neuro.dao;
+package com.slamur.lib.dao;
 
-import com.slamur.app.neuro.model.NeuroEntity;
+import com.slamur.lib.domain.DomainEntity;
 
 import java.util.List;
 
-public interface NeuroDao<EntityType extends NeuroEntity> {
+public interface DomainDao<EntityType extends DomainEntity> {
 
     EntityType getById(int id);
     List<EntityType> getAll();

@@ -1,10 +1,10 @@
-package com.slamur.app.neuro.service;
+package com.slamur.lib.service;
 
-import com.slamur.app.neuro.model.NeuroEntity;
+import com.slamur.lib.domain.DomainEntity;
 
 import java.util.List;
 
-public interface NeuroService<EntityType extends NeuroEntity> {
+public interface DomainService<EntityType extends DomainEntity> {
 
     EntityType getById(int id);
     List<EntityType> getAll();

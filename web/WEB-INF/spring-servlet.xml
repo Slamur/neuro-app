@@ -14,7 +14,9 @@
           class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
-    <!--class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />-->
+
+    <bean id="persistenceAnnotation"
+          class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <bean id="algorithmDao" class="com.slamur.app.neuro.dao.AlgorithmDaoJPA"/>
 

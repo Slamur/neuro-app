@@ -6,13 +6,6 @@ import javax.persistence.Column;
 
 public abstract class NeuroEntityImpl implements NeuroEntity {
 
-    protected int id;
-
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -20,11 +13,11 @@ public abstract class NeuroEntityImpl implements NeuroEntity {
 
         NeuroEntityImpl other = (NeuroEntityImpl) obj;
 
-        return id == other.id;
+        return getId() == other.getId();
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return getId();
     }
 }

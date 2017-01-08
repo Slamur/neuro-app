@@ -11,6 +11,8 @@
           <element id="library" level="project" name="JPA 2.0-2.0" />
           <element id="library" level="project" name="openjpa-all-2.4.1" />
           <element id="library" level="project" name="Spring-4.3.4.RELEASE" />
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="postgresql-9.4.1212" />
         </element>
       </element>
     </root>

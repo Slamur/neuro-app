@@ -8,12 +8,20 @@ import javax.persistence.*;
 @Table(name = "algorithm", schema = "public", catalog = "neuroapp")
 public class AlgorithmEntity extends NeuroDictionaryEntityImpl {
 
+    private int id;
+    private String name, description;
+
     @Id
+    @GeneratedValue
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "algorithm_seq_id")
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -22,9 +30,19 @@ public class AlgorithmEntity extends NeuroDictionaryEntityImpl {
         return description;
     }
 
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Basic
     @Column(name = "name")
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }

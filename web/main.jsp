@@ -1,4 +1,3 @@
-<%@ page import="com.slamur.app.neuro.model.AlgorithmEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -23,9 +22,11 @@
               <table>
                   <thead>Algorithms</thead>
                   <c:forEach items="${algorithms}" var="algorithm">
-                      <td>${algorithm.id}</td>
-                      <td>${algorithm.name}</td>
-                      <td>${algorithm.description}</td>
+                      <tr>
+                          <td>${algorithm.id}</td>
+                          <td>${algorithm.name}</td>
+                          <td>${algorithm.description}</td>
+                      </tr>
                   </c:forEach>
               </table>
               Dictionaries

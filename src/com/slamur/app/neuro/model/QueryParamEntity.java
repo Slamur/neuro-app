@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "query_param", schema = "public", catalog = "neuroapp")
 public class QueryParamEntity extends NeuroEntityImpl {
+
+    private int id;
     private int queryId;
     private int paramTypeId;
     private String valueString;
@@ -17,6 +19,11 @@ public class QueryParamEntity extends NeuroEntityImpl {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic

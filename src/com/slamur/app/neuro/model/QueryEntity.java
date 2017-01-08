@@ -10,6 +10,8 @@ import java.sql.Date;
 public class QueryEntity extends NeuroEntityImpl {
     public static int ADDED = 0, STARTED = ADDED + 1, ENDED = STARTED + 1;
 
+    private int id;
+
     private Date timeAdded, timeStarted, timeEnded;
 
     private int stateType;
@@ -21,6 +23,11 @@ public class QueryEntity extends NeuroEntityImpl {
     @Override
     public int getId() {
         return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic

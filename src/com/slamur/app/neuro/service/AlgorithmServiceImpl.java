@@ -3,7 +3,9 @@ package com.slamur.app.neuro.service;
 import com.slamur.app.neuro.dao.AlgorithmDao;
 import com.slamur.app.neuro.model.AlgorithmEntity;
 
-public class AlgorithmServiceImpl extends NeuroDictionaryServiceImpl<AlgorithmEntity, AlgorithmDao> {
+public class AlgorithmServiceImpl
+        extends NeuroDictionaryServiceImpl<AlgorithmEntity, AlgorithmDao>
+        implements AlgorithmService {
 
     private AlgorithmDao algorithmDao;
 

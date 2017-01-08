@@ -1,19 +1,21 @@
-package com.slamur.app.neuro.dao;
+package com.slamur.lib.dao.jpa;
 
-import com.slamur.app.neuro.model.NeuroEntity;
+import com.slamur.lib.dao.DomainDao;
+import com.slamur.lib.domain.DomainEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
-public abstract class NeuroDaoImpl<EntityType extends NeuroEntity> implements NeuroDao<EntityType> {
+public abstract class DomainDaoJPA<EntityType extends DomainEntity>
+        implements DomainDao<EntityType> {
 
     protected abstract EntityManager getEntityManager();
 
     protected final Class<EntityType> entityClass;
     protected final String entityClassName;
 
-    protected NeuroDaoImpl(Class<EntityType> entityClass) {
+    protected DomainDaoJPA(Class<EntityType> entityClass) {
         this.entityClass = entityClass;
         this.entityClassName = entityClass.getSimpleName();
     }

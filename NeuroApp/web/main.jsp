@@ -75,7 +75,27 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="queries">
-              Queries
+              <table class="table table-striped">
+                  <caption>Queries</caption>
+                  <thead>
+                  <tr>
+                      <td>Id</td>
+                      <td>Added time</td>
+                      <td>Started time</td>
+                      <td>Ended time</td>
+                      <td>Result</td>
+                  </tr>
+                  </thead>
+                  <c:forEach items="${queries}" var="query">
+                      <tr>
+                          <td>${query.id}</td>
+                          <td>${query.timeAdded}</td>
+                          <td>${query.timeStarted}</td>
+                          <td>${query.timeEnded}</td>
+                          <td>${query.resultString}</td>
+                      </tr>
+                  </c:forEach>
+              </table>
           </div>
       </div>
 

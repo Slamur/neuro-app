@@ -3,6 +3,7 @@ package com.slamur.app.neuro.controller;
 import com.slamur.app.neuro.service.AlgorithmService;
 import com.slamur.app.neuro.service.NetworkService;
 import com.slamur.app.neuro.service.ParameterTypeService;
+import com.slamur.app.neuro.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +22,16 @@ public class MainController {
     @Autowired
     private ParameterTypeService parameterTypeService;
 
+    @Autowired
+    private QueryService queryService;
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("algorithms", algorithmService.getAll());
         model.addAttribute("networks", networkService.getAll());
         model.addAttribute("parameterTypes", parameterTypeService.getAll());
+
+        model.addAttribute("queries", queryService.getAll());
 
         return "main";
     }

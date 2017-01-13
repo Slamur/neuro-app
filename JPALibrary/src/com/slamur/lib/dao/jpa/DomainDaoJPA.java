@@ -2,11 +2,13 @@ package com.slamur.lib.dao.jpa;
 
 import com.slamur.lib.dao.DomainDao;
 import com.slamur.lib.domain.DomainEntity;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 
+@Transactional
 public abstract class DomainDaoJPA<EntityType extends DomainEntity>
         implements DomainDao<EntityType> {
 

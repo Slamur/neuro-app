@@ -2,7 +2,9 @@ package com.slamur.lib.dao.jpa;
 
 import com.slamur.lib.dao.DomainDictionaryDao;
 import com.slamur.lib.domain.DomainDictionaryEntity;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public abstract class DomainDictionaryDaoJPA<EntityType extends DomainDictionaryEntity>
         extends DomainDaoJPA<EntityType>
         implements DomainDictionaryDao<EntityType> {

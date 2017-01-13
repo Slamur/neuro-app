@@ -1,4 +1,4 @@
-package com.slamur.app.neuro.domain.parameter_type;
+package com.slamur.app.neuro.domain.parameter;
 
 import com.slamur.lib.domain.impl.DomainDictionaryEntityImpl;
 

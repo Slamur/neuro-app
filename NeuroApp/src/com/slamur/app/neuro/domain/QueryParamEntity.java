@@ -5,10 +5,10 @@ import com.slamur.lib.domain.impl.DomainEntityImpl;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "query_param", schema = "public", catalog = "neuroapp")
+@Table(name = "query_parameter", schema = "public", catalog = "neuroapp")
 public class QueryParamEntity extends DomainEntityImpl {
 
-    private int id;
+    private Integer id;
     private int queryId;
     private int paramTypeId;
     private String valueString;
@@ -17,12 +17,12 @@ public class QueryParamEntity extends DomainEntityImpl {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "query_param_seq_id")
     @Override
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

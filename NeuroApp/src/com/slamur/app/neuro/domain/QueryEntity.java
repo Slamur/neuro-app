@@ -10,7 +10,7 @@ import java.sql.Date;
 public class QueryEntity extends DomainEntityImpl {
     public static int ADDED = 0, STARTED = ADDED + 1, ENDED = STARTED + 1;
 
-    private int id;
+    private Integer id;
 
     private Date timeAdded, timeStarted, timeEnded;
 
@@ -21,12 +21,12 @@ public class QueryEntity extends DomainEntityImpl {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "query_seq_id")
     @Override
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

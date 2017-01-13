@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 public abstract class DomainDictionaryDaoJPA<EntityType extends DomainDictionaryEntity>
-        extends DomainDaoJPA<EntityType>
+        extends DomainNamedDaoJPA<EntityType>
         implements DomainDictionaryDao<EntityType> {
 
     protected DomainDictionaryDaoJPA(Class<EntityType> entityClass) {

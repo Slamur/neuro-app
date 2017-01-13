@@ -13,7 +13,7 @@ public class QueryEntity extends DomainEntityImpl {
 
     private Integer id;
 
-    private Date timeAdded, timeStarted, timeEnded;
+    private Date timeAdded, timeStarted, timeFinished;
 
     private int stateType;
     private String resultString;
@@ -54,13 +54,13 @@ public class QueryEntity extends DomainEntityImpl {
     }
 
     @Basic
-    @Column(name = "time_ended")
-    public Date getTimeEnded() {
-        return timeEnded;
+    @Column(name = "time_finished")
+    public Date getTimeFinished() {
+        return timeFinished;
     }
 
-    public void setTimeEnded(Date timeEnded) {
-        this.timeEnded = timeEnded;
+    public void setTimeFinished(Date timeFinished) {
+        this.timeFinished = timeFinished;
     }
 
     @Basic
@@ -100,7 +100,7 @@ public class QueryEntity extends DomainEntityImpl {
 
         if (timeAdded != null ? !timeAdded.equals(other.timeAdded) : other.timeAdded != null) return false;
         if (timeStarted != null ? !timeStarted.equals(other.timeStarted) : other.timeStarted != null) return false;
-        if (timeEnded != null ? !timeEnded.equals(other.timeEnded) : other.timeEnded != null) return false;
+        if (timeFinished != null ? !timeFinished.equals(other.timeFinished) : other.timeFinished != null) return false;
         if (stateType != other.stateType) return false;
         if (resultString != null ? !resultString.equals(other.resultString) : other.resultString != null) return false;
 
@@ -112,7 +112,7 @@ public class QueryEntity extends DomainEntityImpl {
         int hash = id;
         hash = ENTITY_HASH_BASE * hash + (timeAdded != null ? timeAdded.hashCode() : 0);
         hash = ENTITY_HASH_BASE * hash + (timeStarted != null ? timeStarted.hashCode() : 0);
-        hash = ENTITY_HASH_BASE * hash + (timeEnded != null ? timeEnded.hashCode() : 0);
+        hash = ENTITY_HASH_BASE * hash + (timeFinished != null ? timeFinished.hashCode() : 0);
         hash = ENTITY_HASH_BASE * hash + stateType;
         hash = ENTITY_HASH_BASE * hash + (resultString != null ? resultString.hashCode() : 0);
         return hash;

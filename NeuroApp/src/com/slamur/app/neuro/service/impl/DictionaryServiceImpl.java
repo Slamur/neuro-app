@@ -4,7 +4,6 @@ import com.slamur.app.neuro.dao.DictionaryDao;
 import com.slamur.app.neuro.domain.dictionary.DictionaryEntity;
 import com.slamur.app.neuro.service.DictionaryService;
 import com.slamur.lib.service.impl.DomainDictionaryServiceImpl;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

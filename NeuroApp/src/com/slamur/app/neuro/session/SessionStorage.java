@@ -1,6 +1,7 @@
 package com.slamur.app.neuro.session;
 
 import com.slamur.app.neuro.domain.meta_type.DictionaryTypeEntity;
+import com.slamur.app.neuro.domain.meta_type.PrimitiveTypeEntity;
 import com.slamur.lib.domain.DomainEntity;
 import org.springframework.stereotype.Component;
 
@@ -17,4 +18,7 @@ public interface SessionStorage {
 
     List<DictionaryTypeEntity> getDictionaryTypes();
     void setDictionaryTypes(List<DictionaryTypeEntity> dictionaryTypes);
+
+    List<PrimitiveTypeEntity> getPrimitiveTypes();
+    void setPrimitiveTypes(List<PrimitiveTypeEntity> dictionaryTypes);
 }

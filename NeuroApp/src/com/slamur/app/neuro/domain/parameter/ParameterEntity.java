@@ -10,7 +10,7 @@ public class ParameterEntity extends DomainDictionaryEntityImpl {
 
     public Integer id;
     public String name, description;
-    public Integer typeId;
+    public int typeId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,11 +47,11 @@ public class ParameterEntity extends DomainDictionaryEntityImpl {
 
     @Basic
     @Column(name = "type_id")
-    public Integer getTypeId() {
+    public int getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer typeId) {
+    public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 }

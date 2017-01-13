@@ -47,10 +47,10 @@
         <property name="dictionaryTypeDao" ref="dictionaryTypeDao"/>
     </bean>
 
-    <bean id="parameterTypeDao" class="com.slamur.app.neuro.dao.jpa.ParameterTypeDaoJPA"/>
+    <bean id="parameterDao" class="com.slamur.app.neuro.dao.jpa.ParameterDaoJPA"/>
 
-    <bean id="parameterTypeService" class="com.slamur.app.neuro.service.impl.ParameterTypeServiceImpl">
-        <property name="parameterTypeDao" ref="parameterTypeDao"/>
+    <bean id="parameterService" class="com.slamur.app.neuro.service.impl.ParameterServiceImpl">
+        <property name="parameterDao" ref="parameterDao"/>
     </bean>
 
     <bean id="queryDao" class="com.slamur.app.neuro.dao.jpa.QueryDaoJPA"/>

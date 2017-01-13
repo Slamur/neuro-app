@@ -2,7 +2,6 @@ package com.slamur.app.neuro.service.impl;
 
 import com.slamur.app.neuro.dao.PrimitiveTypeDao;
 import com.slamur.app.neuro.domain.meta_type.PrimitiveTypeEntity;
-import com.slamur.app.neuro.service.DictionaryTypeService;
 import com.slamur.app.neuro.service.ParameterTypeService;
 import com.slamur.lib.service.impl.DomainServiceImpl;
 

@@ -1,6 +1,5 @@
 package com.slamur.app.neuro.domain.meta_type;
 
-import com.slamur.lib.domain.impl.DomainEntityImpl;
 import com.slamur.lib.domain.impl.DomainNamedEntityImpl;
 
 import javax.persistence.*;

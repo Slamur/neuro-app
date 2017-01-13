@@ -9,6 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "query", schema = "public", catalog = "neuroapp")
 public class QueryEntity extends DomainEntityImpl {
+    public static final int ADDED = 0, STARTED = ADDED + 1, FINISHED = STARTED + 1;
+
     public static final String[] QUERY_STATES = new String[] {
             "Add", "Start", "Finish"
     };

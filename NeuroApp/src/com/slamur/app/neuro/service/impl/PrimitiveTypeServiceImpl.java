@@ -2,12 +2,12 @@ package com.slamur.app.neuro.service.impl;
 
 import com.slamur.app.neuro.dao.PrimitiveTypeDao;
 import com.slamur.app.neuro.domain.meta_type.PrimitiveTypeEntity;
-import com.slamur.app.neuro.service.ParameterTypeService;
+import com.slamur.app.neuro.service.PrimitiveTypeService;
 import com.slamur.lib.service.impl.DomainServiceImpl;
 
-public class ParameterTypeServiceImpl
+public class PrimitiveTypeServiceImpl
         extends DomainServiceImpl<PrimitiveTypeEntity, PrimitiveTypeDao>
-        implements ParameterTypeService {
+        implements PrimitiveTypeService {
 
     private PrimitiveTypeDao primitiveTypeDao;
 

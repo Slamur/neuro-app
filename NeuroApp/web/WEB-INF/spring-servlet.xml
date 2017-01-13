@@ -55,7 +55,7 @@
 
     <bean id="primitiveTypeDao" class="com.slamur.app.neuro.dao.jpa.PrimitiveTypeDaoJPA"/>
 
-    <bean id="primitiveTypeService" class="com.slamur.app.neuro.service.impl.ParameterTypeServiceImpl">
+    <bean id="primitiveTypeService" class="com.slamur.app.neuro.service.impl.PrimitiveTypeServiceImpl">
         <property name="primitiveTypeDao" ref="primitiveTypeDao"/>
     </bean>
 

@@ -1,9 +1,6 @@
 package com.slamur.lib.domain;
 
-public interface DomainDictionaryEntity extends DomainEntity {
-
-    String getName();
-    void setName(String name);
+public interface DomainDictionaryEntity extends DomainNamedEntity {
 
     String getDescription();
     void setDescription(String description);

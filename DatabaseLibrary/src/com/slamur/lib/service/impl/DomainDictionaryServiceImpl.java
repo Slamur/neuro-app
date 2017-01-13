@@ -8,7 +8,7 @@ public abstract class DomainDictionaryServiceImpl<
         EntityType extends DomainDictionaryEntity,
         EntityDaoType extends DomainDictionaryDao<EntityType>
         >
-        extends DomainServiceImpl<EntityType, EntityDaoType>
+        extends DomainNamedServiceImpl<EntityType, EntityDaoType>
         implements DomainDictionaryService<EntityType> {
 
 }

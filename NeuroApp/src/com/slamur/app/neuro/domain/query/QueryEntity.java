@@ -3,17 +3,19 @@ package com.slamur.app.neuro.domain.query;
 import com.slamur.lib.domain.impl.DomainEntityImpl;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
 @Table(name = "query", schema = "public", catalog = "neuroapp")
 public class QueryEntity extends DomainEntityImpl {
-    public static int ADDED = 0, STARTED = ADDED + 1, ENDED = STARTED + 1;
+    public static final String[] QUERY_STATES = new String[] {
+            "Add", "Start", "Finish"
+    };
 
     private Integer id;
 
-    private Date timeAdded, timeStarted, timeFinished;
+    private Timestamp timeAdded, timeStarted, timeFinished;
 
     private int stateType;
     private String resultString;
@@ -35,31 +37,31 @@ public class QueryEntity extends DomainEntityImpl {
 
     @Basic
     @Column(name = "time_added")
-    public Date getTimeAdded() {
+    public Timestamp getTimeAdded() {
         return timeAdded;
     }
 
-    public void setTimeAdded(Date timeAdded) {
+    public void setTimeAdded(Timestamp timeAdded) {
         this.timeAdded = timeAdded;
     }
 
     @Basic
     @Column(name = "time_started")
-    public Date getTimeStarted() {
+    public Timestamp getTimeStarted() {
         return timeStarted;
     }
 
-    public void setTimeStarted(Date timeStarted) {
+    public void setTimeStarted(Timestamp timeStarted) {
         this.timeStarted = timeStarted;
     }
 
     @Basic
     @Column(name = "time_finished")
-    public Date getTimeFinished() {
+    public Timestamp getTimeFinished() {
         return timeFinished;
     }
 
-    public void setTimeFinished(Date timeFinished) {
+    public void setTimeFinished(Timestamp timeFinished) {
         this.timeFinished = timeFinished;
     }
 

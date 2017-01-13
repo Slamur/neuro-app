@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-01-13.23:27:10.686</IntrospectionTimestamp>
-      <IntrospectionStateNumber>671</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-01-14.03:10:53.399</IntrospectionTimestamp>
+      <IntrospectionStateNumber>674</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -72,7 +72,7 @@
     </table>
     <table id="18" parent="3" name="query">
       <ObjectId>24666</ObjectId>
-      <StateNumber>599</StateNumber>
+      <StateNumber>674</StateNumber>
     </table>
     <table id="19" parent="3" name="query_parameter">
       <ObjectId>24678</ObjectId>
@@ -232,19 +232,19 @@
     </column>
     <column id="46" parent="18" name="time_added">
       <Position>2</Position>
-      <DataType>date|0</DataType>
+      <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>598</StateNumber>
+      <StateNumber>672</StateNumber>
     </column>
     <column id="47" parent="18" name="time_started">
       <Position>3</Position>
-      <DataType>date|0</DataType>
-      <StateNumber>598</StateNumber>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>673</StateNumber>
     </column>
     <column id="48" parent="18" name="time_finished">
       <Position>4</Position>
-      <DataType>date|0</DataType>
-      <StateNumber>671</StateNumber>
+      <DataType>timestamp|0</DataType>
+      <StateNumber>674</StateNumber>
     </column>
     <column id="49" parent="18" name="state_type">
       <Position>5</Position>

@@ -53,6 +53,12 @@
         <property name="parameterDao" ref="parameterDao"/>
     </bean>
 
+    <bean id="primitiveTypeDao" class="com.slamur.app.neuro.dao.jpa.PrimitiveTypeDaoJPA"/>
+
+    <bean id="primitiveTypeService" class="com.slamur.app.neuro.service.impl.ParameterTypeServiceImpl">
+        <property name="primitiveTypeDao" ref="primitiveTypeDao"/>
+    </bean>
+
     <bean id="queryDao" class="com.slamur.app.neuro.dao.jpa.QueryDaoJPA"/>
 
     <bean id="queryService" class="com.slamur.app.neuro.service.impl.QueryServiceImpl">

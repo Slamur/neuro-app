@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
-      <title>$Title$</title>
+      <title>Neuro app entities</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.js"></script>
 
       <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
@@ -12,51 +14,54 @@
   </head>
   <body>
   <div class="container">
+
       <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#dictionaries" aria-controls="dictionaries" role="tab" data-toggle="tab">Dictionaries</a></li>
+          <li role="presentation"><a href="#parameters" aria-controls="parameters" role="tab" data-toggle="tab">Query parameters</a></li>
           <li role="presentation"><a href="#queries" aria-controls="queries" role="tab" data-toggle="tab">Queries</a></li>
       </ul>
 
       <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="dictionaries">
-              <table class="table table-striped">
-                  <caption>Algorithms</caption>
-                  <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Name</td>
-                        <td>Description</td>
-                    </tr>
-                  </thead>
-                  <c:forEach items="${algorithms}" var="algorithm">
-                      <tr>
-                          <td>${algorithm.id}</td>
-                          <td>${algorithm.name}</td>
-                          <td>${algorithm.description}</td>
-                      </tr>
-                  </c:forEach>
-              </table>
+              <form:form action="/create_dictionary" method="get">
+                  <input type="submit" value="Add dictionary record"/>
+              </form:form>
 
-              <table class="table table-striped">
-                  <caption>Networks</caption>
-                  <thead>
-                  <tr>
-                      <td>Id</td>
-                      <td>Name</td>
-                      <td>Description</td>
-                  </tr>
-                  </thead>
-                  <c:forEach items="${networks}" var="network">
+              <c:forEach items="${dictionaries}" var="dictionariesByType">
+                  <table class="table table-striped">
+                      <caption>${dictionariesByType.key.name}s</caption>
+                      <thead>
                       <tr>
-                          <td>${network.id}</td>
-                          <td>${network.name}</td>
-                          <td>${network.description}</td>
+                          <td>Id</td>
+                          <td>Name</td>
+                          <td>Description</td>
+                          <td>Actions</td>
                       </tr>
-                  </c:forEach>
-              </table>
+                      </thead>
+                      <c:forEach items="${dictionariesByType.value}" var="dictionary" varStatus="loop">
+                          <tr>
+                              <td>${loop.count}</td>
+                              <td>${dictionary.name}</td>
+                              <td>${dictionary.description}</td>
+                              <td>
+                                  <form:form action="/edit_dictionary/${dictionary.id}" method="get">
+                                      <input type="submit" value="Edit"/>
+                                  </form:form>
 
+                                  <form:form action="/delete_dictionary/${dictionary.id}" method="get">
+                                      <input type="submit" value="Delete"/>
+                                  </form:form>
+                              </td>
+                          </tr>
+                      </c:forEach>
+
+                  </table>
+              </c:forEach>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="parameters">
               <table class="table table-striped">
-                  <caption>Parameter types</caption>
+                  <caption>Query parameters</caption>
                   <thead>
                   <tr>
                       <td>Id</td>

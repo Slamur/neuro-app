@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-01-13.20:21:27.933</IntrospectionTimestamp>
-      <IntrospectionStateNumber>655</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-01-13.23:27:10.686</IntrospectionTimestamp>
+      <IntrospectionStateNumber>671</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -241,10 +241,10 @@
       <DataType>date|0</DataType>
       <StateNumber>598</StateNumber>
     </column>
-    <column id="48" parent="18" name="time_ended">
+    <column id="48" parent="18" name="time_finished">
       <Position>4</Position>
       <DataType>date|0</DataType>
-      <StateNumber>598</StateNumber>
+      <StateNumber>671</StateNumber>
     </column>
     <column id="49" parent="18" name="state_type">
       <Position>5</Position>

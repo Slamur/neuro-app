@@ -6,35 +6,41 @@ import com.slamur.app.neuro.session.SessionStorage;
 import com.slamur.lib.domain.DomainEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.*;
 
 @Component
 public class SessionStorageImpl implements SessionStorage {
 
-    private boolean isEntityCreating;
-    private DomainEntity editingEntity;
+    private Set<Class<?>> entityCreatingClasses;
+    private Map<Class<?>, DomainEntity> editingEntityByClasses;
 
     private List<DictionaryTypeEntity> dictionaryTypes;
     private List<PrimitiveTypeEntity> primitiveTypes;
 
-    @Override
-    public boolean isEntityCreating() {
-        return isEntityCreating;
+    public SessionStorageImpl() {
+        this.entityCreatingClasses = new HashSet<>();
+        this.editingEntityByClasses = new HashMap<>();
     }
 
     @Override
-    public void setEntityCreating(boolean entityCreating) {
-        isEntityCreating = entityCreating;
+    public boolean isEntityCreating(Class<?> entityClass) {
+        return entityCreatingClasses.contains(entityClass);
     }
 
     @Override
-    public DomainEntity getEditingEntity() {
-        return editingEntity;
+    public void setEntityCreating(DomainEntity entity, boolean entityCreating) {
+        if (entityCreating) entityCreatingClasses.add(entity.getClass());
+        else entityCreatingClasses.remove(entity.getClass());
     }
 
     @Override
-    public void setEditingEntity(DomainEntity editingEntity) {
-        this.editingEntity = editingEntity;
+    public DomainEntity getEditingEntity(Class<?> entityClass) {
+        return editingEntityByClasses.get(entityClass);
+    }
+
+    @Override
+    public void setEditingEntity(DomainEntity entity) {
+        editingEntityByClasses.put(entity.getClass(), entity);
     }
 
     @Override

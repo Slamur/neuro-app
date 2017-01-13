@@ -10,10 +10,10 @@ import java.util.List;
 @Component
 public interface SessionStorage {
 
-    boolean isEntityCreating();
-    void setEntityCreating(boolean entityCreating);
+    boolean isEntityCreating(Class<?> entityClass);
+    void setEntityCreating(DomainEntity entity, boolean entityCreating);
 
-    DomainEntity getEditingEntity();
+    DomainEntity getEditingEntity(Class<?> entityClass);
     void setEditingEntity(DomainEntity entity);
 
     List<DictionaryTypeEntity> getDictionaryTypes();

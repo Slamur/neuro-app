@@ -5,6 +5,8 @@ import com.slamur.app.neuro.domain.dictionary.DictionaryModel;
 import com.slamur.app.neuro.domain.meta_type.DictionaryTypeEntity;
 import com.slamur.app.neuro.domain.parameter.ParameterEntity;
 import com.slamur.app.neuro.domain.parameter.ParameterModel;
+import com.slamur.app.neuro.domain.query.QueryEntity;
+import com.slamur.app.neuro.domain.query.QueryModel;
 import com.slamur.app.neuro.service.*;
 import com.slamur.app.neuro.session.SessionStorage;
 import com.slamur.lib.domain.DomainEntity;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -84,9 +89,8 @@ public class MainController {
 
         model.addAttribute("types", getParameterTypes());
 
-
         model.addAttribute("queries", queryService.getAll());
-
+        model.addAttribute("states", QueryEntity.QUERY_STATES);
 
         return "main";
     }
@@ -94,7 +98,7 @@ public class MainController {
     @RequestMapping(path = "/create_dictionary", method = RequestMethod.GET)
     public String createDictionary(Model model) {
         DictionaryEntity dictionary = new DictionaryEntity();
-        sessionStorage.setEntityCreating(true);
+        sessionStorage.setEntityCreating(dictionary, true);
 
         return editDictionary(dictionary, model);
     }
@@ -105,7 +109,7 @@ public class MainController {
             Model model
     ) {
         DictionaryEntity dictionary = dictionaryService.getById(id);
-        sessionStorage.setEntityCreating(false);
+        sessionStorage.setEntityCreating(dictionary, false);
 
         return editDictionary(dictionary, model);
     }
@@ -128,12 +132,12 @@ public class MainController {
             @PathVariable("id") Integer id
     ) {
         dictionaryService.remove(id);
-        return "redirect:/";
+        return "redirect:/#dictionaries";
     }
 
     @RequestMapping(path = "/save_dictionary", method = RequestMethod.POST)
     public String saveDictionary(@ModelAttribute("dictionary") DictionaryModel dictionaryModel) {
-        DictionaryEntity savedDictionary = (DictionaryEntity) sessionStorage.getEditingEntity();
+        DictionaryEntity savedDictionary = (DictionaryEntity) sessionStorage.getEditingEntity(DictionaryEntity.class);
 
         savedDictionary.setName(dictionaryModel.getName());
         savedDictionary.setDescription(dictionaryModel.getDescription());
@@ -144,13 +148,13 @@ public class MainController {
                 )
         );
 
-        if (sessionStorage.isEntityCreating()) {
+        if (sessionStorage.isEntityCreating(DictionaryEntity.class)) {
             dictionaryService.create(savedDictionary);
         } else {
             dictionaryService.update(savedDictionary);
         }
 
-        sessionStorage.setEntityCreating(false);
+        sessionStorage.setEntityCreating(savedDictionary, false);
 
         return "redirect:/#dictionaries";
     }
@@ -158,7 +162,7 @@ public class MainController {
     @RequestMapping(path = "/create_parameter", method = RequestMethod.GET)
     public String createParameter(Model model) {
         ParameterEntity parameter = new ParameterEntity();
-        sessionStorage.setEntityCreating(true);
+        sessionStorage.setEntityCreating(parameter, true);
 
         return editParameter(parameter, model);
     }
@@ -169,7 +173,7 @@ public class MainController {
             Model model
     ) {
         ParameterEntity parameter = parameterService.getById(id);
-        sessionStorage.setEntityCreating(false);
+        sessionStorage.setEntityCreating(parameter, false);
 
         return editParameter(parameter, model);
     }
@@ -200,28 +204,117 @@ public class MainController {
             @PathVariable("id") Integer id
     ) {
         parameterService.remove(id);
-        return "redirect:/";
+        return "redirect:/#parameters";
     }
 
     @RequestMapping(path = "/save_parameter", method = RequestMethod.POST)
     public String saveParameter(@ModelAttribute("parameter") ParameterModel parameterModel) {
-        ParameterEntity savedParameter = (ParameterEntity) sessionStorage.getEditingEntity();
+        ParameterEntity savedParameter = (ParameterEntity) sessionStorage.getEditingEntity(ParameterEntity.class);
 
         savedParameter.setName(parameterModel.getName());
         savedParameter.setDescription(parameterModel.getDescription());
         savedParameter.setTypeId(parameterModel.getTypeId());
 
-        if (sessionStorage.isEntityCreating()) {
+        if (sessionStorage.isEntityCreating(ParameterEntity.class)) {
             parameterService.create(savedParameter);
         } else {
             parameterService.update(savedParameter);
         }
 
-        sessionStorage.setEntityCreating(false);
+        sessionStorage.setEntityCreating(savedParameter, false);
 
         return "redirect:/#parameters";
     }
 
+    @RequestMapping(path = "/create_query", method = RequestMethod.GET)
+    public String createQuery(Model model) {
+        QueryEntity query = new QueryEntity();
+        sessionStorage.setEntityCreating(query, true);
+
+        return editQuery(query, model);
+    }
+
+    @RequestMapping(path = "/edit_query/{id}", method = RequestMethod.GET)
+    public String editQuery(
+            @PathVariable("id") Integer id,
+            Model model
+    ) {
+        QueryEntity query = queryService.getById(id);
+        sessionStorage.setEntityCreating(query, false);
+
+        return editQuery(query, model);
+    }
+
+    private String editQuery(
+            QueryEntity query, Model model
+    ) {
+        sessionStorage.setEditingEntity(query);
+
+        model.addAttribute("query",
+                new QueryModel(query)
+        );
+
+        return "edit_query";
+    }
+
+    @RequestMapping(path = "/delete_query/{id}", method = RequestMethod.GET)
+    public String deleteQuery(
+            @PathVariable("id") Integer id
+    ) {
+        queryService.remove(id);
+        return "redirect:/#queries";
+    }
+
+    @RequestMapping(path = "/change_query_state/{id}", method = RequestMethod.GET)
+    public String changeQueryState(
+            @PathVariable("id") Integer id
+    ) {
+        QueryEntity query = queryService.getById(id);
+        query.setStateType(
+                query.getStateType() + 1
+        );
+
+        switch (query.getStateType()) {
+            case QueryEntity.ADDED:
+                query.setStateType(QueryEntity.STARTED);
+                query.setTimeStarted(getCurrentDateTime());
+                break;
+            case QueryEntity.STARTED:
+                query.setStateType(QueryEntity.FINISHED);
+                query.setTimeFinished(getCurrentDateTime());
+                query.setResultString(
+                        "resultString#" + Math.random()
+                );
+                break;
+            case QueryEntity.FINISHED:
+            default:
+                break;
+        }
+
+        return "redirect:/#queries";
+    }
+
+    @RequestMapping(path = "/save_query", method = RequestMethod.POST)
+    public String saveQuery(@ModelAttribute("query") QueryModel queryModel) {
+        QueryEntity savedQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
+
+        if (sessionStorage.isEntityCreating(QueryEntity.class)) {
+            savedQuery.setTimeAdded(getCurrentDateTime());
+            queryService.create(savedQuery);
+        } else {
+            queryService.update(savedQuery);
+        }
+
+        sessionStorage.setEntityCreating(savedQuery, false);
+
+        return "redirect:/#queries";
+    }
+
+    private Timestamp getCurrentDateTime() {
+        return Timestamp.valueOf(
+                LocalDateTime.now()
+        );
+    }
 
     private <DomainType extends DomainEntity> DomainType findById(
             List<DomainType> domains, Integer id

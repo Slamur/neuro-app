@@ -17,5 +17,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="JPA 2.0-2.0" level="project" />
+    <orderEntry type="library" name="Spring-4.3.4.RELEASE" level="project" />
   </component>
 </module>

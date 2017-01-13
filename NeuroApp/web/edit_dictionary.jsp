@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
   <head>
-      <title>!!! TODO change to entity class name ??? Dictionary editing</title>
+      <title>Dictionary editing</title>
       <script type="text/javascript" src="resources/js/jquery-3.1.1.js"></script>
 
       <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>

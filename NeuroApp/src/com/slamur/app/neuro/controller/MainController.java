@@ -3,12 +3,12 @@ package com.slamur.app.neuro.controller;
 import com.slamur.app.neuro.domain.dictionary.DictionaryEntity;
 import com.slamur.app.neuro.domain.dictionary.DictionaryModel;
 import com.slamur.app.neuro.domain.meta_type.DictionaryTypeEntity;
-import com.slamur.app.neuro.service.DictionaryService;
-import com.slamur.app.neuro.service.DictionaryTypeService;
-import com.slamur.app.neuro.service.ParameterTypeService;
-import com.slamur.app.neuro.service.QueryService;
+import com.slamur.app.neuro.domain.parameter.ParameterEntity;
+import com.slamur.app.neuro.domain.parameter.ParameterModel;
+import com.slamur.app.neuro.service.*;
 import com.slamur.app.neuro.session.SessionStorage;
 import com.slamur.lib.domain.DomainEntity;
+import com.slamur.lib.domain.DomainNamedEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Transactional
@@ -30,7 +28,9 @@ public class MainController {
 
     private final DictionaryTypeService dictionaryTypeService;
 
-    private final ParameterTypeService parameterTypeService;
+    private final ParameterService parameterService;
+
+    private final PrimitiveTypeService primitiveTypeService;
 
     private final QueryService queryService;
 
@@ -40,26 +40,38 @@ public class MainController {
     public MainController(
             DictionaryService dictionaryService,
             DictionaryTypeService dictionaryTypeService,
-            ParameterTypeService parameterTypeService,
+            ParameterService parameterService,
+            PrimitiveTypeService primitiveTypeService,
             QueryService queryService,
             SessionStorage sessionStorage
     ) {
         this.dictionaryService = dictionaryService;
         this.dictionaryTypeService = dictionaryTypeService;
-        this.parameterTypeService = parameterTypeService;
+        this.parameterService = parameterService;
+        this.primitiveTypeService = primitiveTypeService;
         this.queryService = queryService;
         this.sessionStorage = sessionStorage;
     }
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String index(Model model) {
+    private void initSession() {
         if (sessionStorage.getDictionaryTypes() == null) {
             sessionStorage.setDictionaryTypes(
                     dictionaryTypeService.getAll()
             );
         }
 
-        Map<DictionaryTypeEntity, List<DictionaryEntity>> dictionariesByTypes = new HashMap<>();
+        if (sessionStorage.getPrimitiveTypes() == null) {
+            sessionStorage.setPrimitiveTypes(
+                    primitiveTypeService.getAll()
+            );
+        }
+    }
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public String index(Model model) {
+        initSession();
+
+        Map<DictionaryTypeEntity, List<DictionaryEntity>> dictionariesByTypes = new LinkedHashMap<>();
         for (DictionaryTypeEntity dictionaryType : sessionStorage.getDictionaryTypes()) {
             dictionariesByTypes.put(
                     dictionaryType,
@@ -68,7 +80,10 @@ public class MainController {
         }
 
         model.addAttribute("dictionaries", dictionariesByTypes);
-        model.addAttribute("parameterTypes", parameterTypeService.getAll());
+        model.addAttribute("parameters", parameterService.getAll());
+
+        model.addAttribute("types", getParameterTypes());
+
 
         model.addAttribute("queries", queryService.getAll());
 
@@ -77,7 +92,7 @@ public class MainController {
     }
 
     @RequestMapping(path = "/create_dictionary", method = RequestMethod.GET)
-    public String createAlgorithm(Model model) {
+    public String createDictionary(Model model) {
         DictionaryEntity dictionary = new DictionaryEntity();
         sessionStorage.setEntityCreating(true);
 
@@ -117,7 +132,7 @@ public class MainController {
     }
 
     @RequestMapping(path = "/save_dictionary", method = RequestMethod.POST)
-    public String saveAlgorithm(@ModelAttribute("dictionary") DictionaryModel dictionaryModel) {
+    public String saveDictionary(@ModelAttribute("dictionary") DictionaryModel dictionaryModel) {
         DictionaryEntity savedDictionary = (DictionaryEntity) sessionStorage.getEditingEntity();
 
         savedDictionary.setName(dictionaryModel.getName());
@@ -137,8 +152,76 @@ public class MainController {
 
         sessionStorage.setEntityCreating(false);
 
+        return "redirect:/#dictionaries";
+    }
+
+    @RequestMapping(path = "/create_parameter", method = RequestMethod.GET)
+    public String createParameter(Model model) {
+        ParameterEntity parameter = new ParameterEntity();
+        sessionStorage.setEntityCreating(true);
+
+        return editParameter(parameter, model);
+    }
+
+    @RequestMapping(path = "/edit_parameter/{id}", method = RequestMethod.GET)
+    public String editParameter(
+            @PathVariable("id") Integer id,
+            Model model
+    ) {
+        ParameterEntity parameter = parameterService.getById(id);
+        sessionStorage.setEntityCreating(false);
+
+        return editParameter(parameter, model);
+    }
+
+    private List<DomainNamedEntity> getParameterTypes() {
+        List<DomainNamedEntity> parameterTypes = new ArrayList<>();
+        parameterTypes.addAll(sessionStorage.getPrimitiveTypes());
+        parameterTypes.addAll(sessionStorage.getDictionaryTypes());
+
+        return parameterTypes;
+    }
+
+    private String editParameter(
+            ParameterEntity parameter, Model model
+    ) {
+        sessionStorage.setEditingEntity(parameter);
+
+        model.addAttribute("types", getParameterTypes());
+        model.addAttribute("parameter",
+                new ParameterModel(parameter)
+        );
+
+        return "edit_parameter";
+    }
+
+    @RequestMapping(path = "/delete_parameter/{id}", method = RequestMethod.GET)
+    public String deleteParameter(
+            @PathVariable("id") Integer id
+    ) {
+        parameterService.remove(id);
         return "redirect:/";
     }
+
+    @RequestMapping(path = "/save_parameter", method = RequestMethod.POST)
+    public String saveParameter(@ModelAttribute("parameter") ParameterModel parameterModel) {
+        ParameterEntity savedParameter = (ParameterEntity) sessionStorage.getEditingEntity();
+
+        savedParameter.setName(parameterModel.getName());
+        savedParameter.setDescription(parameterModel.getDescription());
+        savedParameter.setTypeId(parameterModel.getTypeId());
+
+        if (sessionStorage.isEntityCreating()) {
+            parameterService.create(savedParameter);
+        } else {
+            parameterService.update(savedParameter);
+        }
+
+        sessionStorage.setEntityCreating(false);
+
+        return "redirect:/#parameters";
+    }
+
 
     private <DomainType extends DomainEntity> DomainType findById(
             List<DomainType> domains, Integer id

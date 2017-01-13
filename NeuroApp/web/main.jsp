@@ -11,6 +11,14 @@
       <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
       <link href="${bootstrap}" rel="stylesheet" />
       <script type="text/javascript" src="resources/js/bootstrap-3.3.5.js"></script>
+
+      <script type="text/javascript">
+          $(document).ready(function(){
+              if(window.location.hash != "") {
+                  $('a[href="' + window.location.hash + '"]').click()
+              }
+          });
+      </script>
   </head>
   <body>
   <div class="container">
@@ -60,6 +68,10 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="parameters">
+              <form:form action="/create_parameter" method="get">
+                  <input type="submit" value="Add parameter"/>
+              </form:form>
+
               <table class="table table-striped">
                   <caption>Parameters</caption>
                   <thead>
@@ -67,13 +79,25 @@
                       <td>Id</td>
                       <td>Name</td>
                       <td>Description</td>
+                      <td>Type</td>
+                      <td>Actions</td>
                   </tr>
                   </thead>
-                  <c:forEach items="${parameterTypes}" var="parameterType">
+                  <c:forEach items="${parameters}" var="parameter">
                       <tr>
-                          <td>${parameterType.id}</td>
-                          <td>${parameterType.name}</td>
-                          <td>${parameterType.description}</td>
+                          <td>${parameter.id}</td>
+                          <td>${parameter.name}</td>
+                          <td>${parameter.description}</td>
+                          <td>${types.get(parameter.typeId - 1).name}</td>
+                          <td>
+                              <form:form action="/edit_parameter/${parameter.id}" method="get">
+                                  <input type="submit" value="Edit"/>
+                              </form:form>
+
+                              <form:form action="/delete_parameter/${parameter.id}" method="get">
+                                  <input type="submit" value="Delete"/>
+                              </form:form>
+                          </td>
                       </tr>
                   </c:forEach>
               </table>

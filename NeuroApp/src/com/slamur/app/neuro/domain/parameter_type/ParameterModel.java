@@ -1,17 +1,17 @@
 package com.slamur.app.neuro.domain.parameter_type;
 
-public class ParameterTypeModel {
+public class ParameterModel {
 
     private String name, description;
 
     private boolean isPrimitive;
     private int typeId;
 
-    public ParameterTypeModel() {
+    public ParameterModel() {
 
     }
 
-    public ParameterTypeModel(ParameterTypeEntity entity) {
+    public ParameterModel(ParameterEntity entity) {
         this();
 
         this.name = entity.getName();

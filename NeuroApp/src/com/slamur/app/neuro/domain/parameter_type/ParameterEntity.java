@@ -5,8 +5,8 @@ import com.slamur.lib.domain.impl.DomainDictionaryEntityImpl;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "parameter_type", schema = "public", catalog = "neuroapp")
-public class ParameterTypeEntity extends DomainDictionaryEntityImpl {
+@Table(name = "parameter", schema = "public", catalog = "neuroapp")
+public class ParameterEntity extends DomainDictionaryEntityImpl {
 
     public Integer id;
     public String name, description;

@@ -11,11 +11,17 @@ public abstract class DomainEntityImpl implements DomainEntity {
 
         DomainEntityImpl other = (DomainEntityImpl) obj;
 
-        return getId() == other.getId();
+        if (getId() == null) return other.getId() == null;
+        return getId().equals(other.getId());
     }
 
     @Override
     public int hashCode() {
-        return getId();
+        int hashCode = 0;
+
+        Integer id = getId();
+        hashCode = hashCode * ENTITY_HASH_BASE + (id == null ? 0 : id);
+
+        return hashCode;
     }
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "query_parameter", schema = "public", catalog = "neuroapp")
-public class QueryParamEntity extends DomainEntityImpl {
+public class QueryParameterEntity extends DomainEntityImpl {
 
     private Integer id;
     private int queryId;
@@ -60,7 +60,7 @@ public class QueryParamEntity extends DomainEntityImpl {
     public boolean equals(Object obj) {
         if (!super.equals(obj)) return false;
 
-        QueryParamEntity other = (QueryParamEntity) obj;
+        QueryParameterEntity other = (QueryParameterEntity) obj;
 
         if (id != other.id) return false;
         if (queryId != other.queryId) return false;

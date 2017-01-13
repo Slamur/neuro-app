@@ -65,10 +65,10 @@
         <property name="queryDao" ref="queryDao"/>
     </bean>
 
-    <bean id="queryParamDao" class="com.slamur.app.neuro.dao.jpa.QueryParamDaoJPA"/>
+    <bean id="queryParameterDao" class="com.slamur.app.neuro.dao.jpa.QueryParameterDaoJPA"/>
 
-    <bean id="queryParamService" class="com.slamur.app.neuro.service.impl.QueryParamServiceImpl">
-        <property name="queryParamDao" ref="queryParamDao"/>
+    <bean id="queryParameterService" class="com.slamur.app.neuro.service.impl.QueryParameterServiceImpl">
+        <property name="queryParameterDao" ref="queryParameterDao"/>
     </bean>
 
     <bean id="sessionStorage" class="com.slamur.app.neuro.session.impl.SessionStorageImpl" scope="session">

@@ -6,7 +6,7 @@
         <class>com.slamur.app.neuro.domain.parameter.ParameterEntity</class>
         <class>com.slamur.app.neuro.domain.meta_type.PrimitiveTypeEntity</class>
         <class>com.slamur.app.neuro.domain.query.QueryEntity</class>
-        <class>com.slamur.app.neuro.domain.query.QueryParamEntity</class>
+        <class>com.slamur.app.neuro.domain.query.QueryParameterEntity</class>
         <class>com.slamur.app.neuro.domain.dictionary.DictionaryEntity</class>
         <class>com.slamur.app.neuro.domain.meta_type.DictionaryTypeEntity</class>
         <properties>

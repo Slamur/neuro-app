@@ -18,7 +18,7 @@ public class QueryEntity extends DomainEntityImpl {
     private int stateType;
     private String resultString;
 
-    private List<QueryParamEntity> queryParameters;
+    private List<QueryParameterEntity> queryParameters;
 
     @Id
     @Column(name = "id")
@@ -83,12 +83,12 @@ public class QueryEntity extends DomainEntityImpl {
         this.resultString = resultFile;
     }
 
-    @OneToMany(targetEntity = QueryParamEntity.class)
-    public List<QueryParamEntity> getQueryParameters() {
+    @OneToMany(targetEntity = QueryParameterEntity.class)
+    public List<QueryParameterEntity> getQueryParameters() {
         return queryParameters;
     }
 
-    public void setQueryParameters(List<QueryParamEntity> queryParameters) {
+    public void setQueryParameters(List<QueryParameterEntity> queryParameters) {
         this.queryParameters = queryParameters;
     }
 

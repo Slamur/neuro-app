@@ -4,6 +4,7 @@
     <persistence-unit name="NeuroAppPersistenceUnit">
         <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <class>com.slamur.app.neuro.domain.parameter.ParameterEntity</class>
+        <class>com.slamur.app.neuro.domain.meta_type.PrimitiveTypeEntity</class>
         <class>com.slamur.app.neuro.domain.QueryEntity</class>
         <class>com.slamur.app.neuro.domain.QueryParamEntity</class>
         <class>com.slamur.app.neuro.domain.dictionary.DictionaryEntity</class>

@@ -3,7 +3,6 @@ package com.slamur.app.neuro.dao.jpa;
 import com.slamur.app.neuro.dao.QueryDao;
 import com.slamur.app.neuro.domain.QueryEntity;
 import com.slamur.lib.dao.jpa.DomainDaoJPA;
-import com.slamur.lib.dao.jpa.DomainDictionaryDaoJPA;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

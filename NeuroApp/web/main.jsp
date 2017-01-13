@@ -104,6 +104,10 @@
           </div>
 
           <div role="tabpanel" class="tab-pane" id="queries">
+              <form:form action="/create_query" method="get">
+                  <input type="submit" value="Add query"/>
+              </form:form>
+
               <table class="table table-striped">
                   <caption>Queries</caption>
                   <thead>
@@ -113,6 +117,7 @@
                       <td>Started time</td>
                       <td>Ended time</td>
                       <td>Result</td>
+                      <td>Actions</td>
                   </tr>
                   </thead>
                   <c:forEach items="${queries}" var="query">
@@ -120,8 +125,23 @@
                           <td>${query.id}</td>
                           <td>${query.timeAdded}</td>
                           <td>${query.timeStarted}</td>
-                          <td>${query.timeEnded}</td>
+                          <td>${query.timeFinished}</td>
                           <td>${query.resultString}</td>
+                          <td>
+                              <form:form action="/edit_query/${query.id}" method="get">
+                                  <input type="submit" value="Edit"/>
+                              </form:form>
+
+                              <form:form action="/delete_query/${query.id}" method="get">
+                                  <input type="submit" value="Delete"/>
+                              </form:form>
+
+                              <c:if test="${query.stateType < states.length - 1}">
+                                  <form:form action="/change_query_state/${query.id}" method="get">
+                                      <input type="submit" value="${states[query.stateType + 1]}"/>
+                                  </form:form>
+                              </c:if>
+                          </td>
                       </tr>
                   </c:forEach>
               </table>

@@ -1,12 +1,12 @@
 package com.slamur.app.neuro.domain.meta_type;
 
-import com.slamur.lib.domain.impl.DomainEntityImpl;
+import com.slamur.lib.domain.impl.DomainNamedEntityImpl;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "dictionary_type", schema = "public", catalog = "neuroapp")
-public class DictionaryTypeEntity extends DomainEntityImpl {
+public class DictionaryTypeEntity extends DomainNamedEntityImpl {
 
     public Integer id;
     public String name;

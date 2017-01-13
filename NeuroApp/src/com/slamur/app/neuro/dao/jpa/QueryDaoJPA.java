@@ -1,7 +1,7 @@
 package com.slamur.app.neuro.dao.jpa;
 
 import com.slamur.app.neuro.dao.QueryDao;
-import com.slamur.app.neuro.domain.QueryEntity;
+import com.slamur.app.neuro.domain.query.QueryEntity;
 import com.slamur.lib.dao.jpa.DomainDaoJPA;
 import org.springframework.stereotype.Component;
 

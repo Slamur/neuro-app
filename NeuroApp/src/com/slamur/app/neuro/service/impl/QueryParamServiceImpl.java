@@ -1,7 +1,7 @@
 package com.slamur.app.neuro.service.impl;
 
 import com.slamur.app.neuro.dao.QueryParamDao;
-import com.slamur.app.neuro.domain.QueryParamEntity;
+import com.slamur.app.neuro.domain.query.QueryParamEntity;
 import com.slamur.app.neuro.service.QueryParamService;
 import com.slamur.lib.service.impl.DomainServiceImpl;
 

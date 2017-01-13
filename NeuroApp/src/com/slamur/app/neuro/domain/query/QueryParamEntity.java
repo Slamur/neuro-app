@@ -1,4 +1,4 @@
-package com.slamur.app.neuro.domain;
+package com.slamur.app.neuro.domain.query;
 
 import com.slamur.lib.domain.impl.DomainEntityImpl;
 

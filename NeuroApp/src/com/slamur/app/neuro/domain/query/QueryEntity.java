@@ -1,9 +1,10 @@
-package com.slamur.app.neuro.domain;
+package com.slamur.app.neuro.domain.query;
 
 import com.slamur.lib.domain.impl.DomainEntityImpl;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "query", schema = "public", catalog = "neuroapp")
@@ -17,9 +18,11 @@ public class QueryEntity extends DomainEntityImpl {
     private int stateType;
     private String resultString;
 
+    private List<QueryParamEntity> queryParameters;
+
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "query_seq_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Override
     public Integer getId() {
         return id;
@@ -78,6 +81,15 @@ public class QueryEntity extends DomainEntityImpl {
 
     public void setResultString(String resultFile) {
         this.resultString = resultFile;
+    }
+
+    @OneToMany(targetEntity = QueryParamEntity.class)
+    public List<QueryParamEntity> getQueryParameters() {
+        return queryParameters;
+    }
+
+    public void setQueryParameters(List<QueryParamEntity> queryParameters) {
+        this.queryParameters = queryParameters;
     }
 
     @Override

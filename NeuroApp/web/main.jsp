@@ -17,7 +17,7 @@
 
       <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#dictionaries" aria-controls="dictionaries" role="tab" data-toggle="tab">Dictionaries</a></li>
-          <li role="presentation"><a href="#parameters" aria-controls="parameters" role="tab" data-toggle="tab">Query parameters</a></li>
+          <li role="presentation"><a href="#parameters" aria-controls="parameters" role="tab" data-toggle="tab">Parameters</a></li>
           <li role="presentation"><a href="#queries" aria-controls="queries" role="tab" data-toggle="tab">Queries</a></li>
       </ul>
 
@@ -61,7 +61,7 @@
 
           <div role="tabpanel" class="tab-pane" id="parameters">
               <table class="table table-striped">
-                  <caption>Query parameters</caption>
+                  <caption>Parameters</caption>
                   <thead>
                   <tr>
                       <td>Id</td>

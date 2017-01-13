@@ -1,7 +1,7 @@
 package com.slamur.app.neuro.dao.jpa;
 
 import com.slamur.app.neuro.dao.ParameterTypeDao;
-import com.slamur.app.neuro.domain.ParameterTypeEntity;
+import com.slamur.app.neuro.domain.parameter_type.ParameterTypeEntity;
 import com.slamur.lib.dao.jpa.DomainDictionaryDaoJPA;
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,6 @@
 package com.slamur.app.neuro.domain.query;
 
+import com.slamur.app.neuro.domain.parameter.ParameterEntity;
 import com.slamur.lib.domain.impl.DomainEntityImpl;
 
 import javax.persistence.*;
@@ -10,12 +11,12 @@ public class QueryParameterEntity extends DomainEntityImpl {
 
     private Integer id;
     private int queryId;
-    private int paramTypeId;
+    private ParameterEntity parameter;
     private String valueString;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "query_param_seq_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Override
     public Integer getId() {
         return id;
@@ -36,14 +37,13 @@ public class QueryParameterEntity extends DomainEntityImpl {
         this.queryId = queryId;
     }
 
-    @Basic
-    @Column(name = "param_type_id")
-    public int getParamTypeId() {
-        return paramTypeId;
+    @OneToOne(targetEntity = ParameterEntity.class)
+    public ParameterEntity getParameter() {
+        return parameter;
     }
 
-    public void setParamTypeId(int paramTypeId) {
-        this.paramTypeId = paramTypeId;
+    public void setParameter(ParameterEntity parameter) {
+        this.parameter = parameter;
     }
 
     @Basic
@@ -62,9 +62,8 @@ public class QueryParameterEntity extends DomainEntityImpl {
 
         QueryParameterEntity other = (QueryParameterEntity) obj;
 
-        if (id != other.id) return false;
         if (queryId != other.queryId) return false;
-        if (paramTypeId != other.paramTypeId) return false;
+        if (!parameter.equals(other.parameter)) return false;
         if (valueString != null ? !valueString.equals(other.valueString) : other.valueString != null) return false;
 
         return true;
@@ -74,7 +73,7 @@ public class QueryParameterEntity extends DomainEntityImpl {
     public int hashCode() {
         int result = id;
         result = ENTITY_HASH_BASE * result + queryId;
-        result = ENTITY_HASH_BASE * result + paramTypeId;
+        result = ENTITY_HASH_BASE * result + parameter.getId();
         result = ENTITY_HASH_BASE * result + (valueString != null ? valueString.hashCode() : 0);
         return result;
     }

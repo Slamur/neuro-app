@@ -275,6 +275,10 @@ public class MainController {
                 new QueryModel(query)
         );
 
+        model.addAttribute("queryParameters",
+                queryParameterService.getAllByQuery(query)
+        );
+
         model.addAttribute("valueNames", getValueNames());
 
         return "edit_query";

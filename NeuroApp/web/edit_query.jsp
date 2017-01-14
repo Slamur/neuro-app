@@ -43,10 +43,10 @@
                   <td>${queryParameter.parameter.name}</td>
                   <td>
                       <c:if test="${queryParameter.parameter.typeId <= 4}">
-                          ${queryParameter.valueString}
+                          ${queryParameter.value}
                       </c:if>
                       <c:if test="${queryParameter.parameter.typeId > 4}">
-                          ${valueNames.get(queryParameter.valueString)}
+                          ${valueNames.get(queryParameter.value)}
                       </c:if>
                   </td>
                   <td>

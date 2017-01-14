@@ -10,4 +10,6 @@ public interface QueryParameterDao extends DomainDao<QueryParameterEntity> {
     List<QueryParameterEntity> getAllByQueryId(Integer queryId);
 
     boolean hasAnyWithParameterTypeAndValue(Integer parameterTypeId, Integer dictionaryId);
+
+    boolean hasAnyWithParameterId(Integer parameterId);
 }

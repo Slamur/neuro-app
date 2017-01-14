@@ -2,6 +2,7 @@ package com.slamur.app.neuro.service.impl;
 
 import com.slamur.app.neuro.dao.QueryParameterDao;
 import com.slamur.app.neuro.domain.dictionary.DictionaryEntity;
+import com.slamur.app.neuro.domain.parameter.ParameterEntity;
 import com.slamur.app.neuro.domain.query.QueryEntity;
 import com.slamur.app.neuro.domain.query.QueryParameterEntity;
 import com.slamur.app.neuro.service.QueryParameterService;
@@ -34,5 +35,10 @@ public class QueryParameterServiceImpl
         return queryParameterDao.hasAnyWithParameterTypeAndValue(
                 dictionary.getType().getId(), dictionary.getId()
         );
+    }
+
+    @Override
+    public boolean hasAnyWithParameter(ParameterEntity parameter) {
+        return queryParameterDao.hasAnyWithParameterId(parameter.getId());
     }
 }

@@ -215,7 +215,13 @@ public class MainController {
     public String deleteParameter(
             @PathVariable("id") Integer id
     ) {
-        parameterService.remove(id);
+        ParameterEntity parameter = parameterService.getById(id);
+
+        boolean canDeleteParameter = !queryParameterService.hasAnyWithParameter(parameter);
+        if (canDeleteParameter) {
+            parameterService.remove(parameter);
+        }
+
         return "redirect:/#parameters";
     }
 

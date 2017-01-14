@@ -28,9 +28,9 @@ public class SessionStorageImpl implements SessionStorage {
     }
 
     @Override
-    public void setEntityCreating(DomainEntity entity, boolean entityCreating) {
-        if (entityCreating) entityCreatingClasses.add(entity.getClass());
-        else entityCreatingClasses.remove(entity.getClass());
+    public void setEntityCreating(Class<?> entityClass, boolean entityCreating) {
+        if (entityCreating) entityCreatingClasses.add(entityClass);
+        else entityCreatingClasses.remove(entityClass);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class SessionStorageImpl implements SessionStorage {
     }
 
     @Override
-    public void setEditingEntity(DomainEntity entity) {
-        editingEntityByClasses.put(entity.getClass(), entity);
+    public void setEditingEntity(Class<?> entityClass, DomainEntity entity) {
+        editingEntityByClasses.put(entityClass, entity);
     }
 
     @Override

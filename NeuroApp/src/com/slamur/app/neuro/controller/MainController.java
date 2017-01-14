@@ -104,7 +104,7 @@ public class MainController {
     @RequestMapping(path = "/create_dictionary", method = RequestMethod.GET)
     public String createDictionary(Model model) {
         DictionaryEntity dictionary = new DictionaryEntity();
-        sessionStorage.setEntityCreating(dictionary, true);
+        sessionStorage.setEntityCreating(DictionaryEntity.class, true);
 
         return editDictionary(dictionary, model);
     }
@@ -115,7 +115,7 @@ public class MainController {
             Model model
     ) {
         DictionaryEntity dictionary = dictionaryService.getById(id);
-        sessionStorage.setEntityCreating(dictionary, false);
+        sessionStorage.setEntityCreating(DictionaryEntity.class, false);
 
         return editDictionary(dictionary, model);
     }
@@ -123,7 +123,7 @@ public class MainController {
     private String editDictionary(
             DictionaryEntity dictionary, Model model
     ) {
-        sessionStorage.setEditingEntity(dictionary);
+        sessionStorage.setEditingEntity(DictionaryEntity.class, dictionary);
 
         model.addAttribute("types", sessionStorage.getDictionaryTypes());
         model.addAttribute("dictionary",
@@ -160,7 +160,7 @@ public class MainController {
             dictionaryService.update(savedDictionary);
         }
 
-        sessionStorage.setEntityCreating(savedDictionary, false);
+        sessionStorage.setEntityCreating(DictionaryEntity.class, false);
 
         return "redirect:/#dictionaries";
     }
@@ -168,7 +168,7 @@ public class MainController {
     @RequestMapping(path = "/create_parameter", method = RequestMethod.GET)
     public String createParameter(Model model) {
         ParameterEntity parameter = new ParameterEntity();
-        sessionStorage.setEntityCreating(parameter, true);
+        sessionStorage.setEntityCreating(ParameterEntity.class, true);
 
         return editParameter(parameter, model);
     }
@@ -179,7 +179,7 @@ public class MainController {
             Model model
     ) {
         ParameterEntity parameter = parameterService.getById(id);
-        sessionStorage.setEntityCreating(parameter, false);
+        sessionStorage.setEntityCreating(ParameterEntity.class, false);
 
         return editParameter(parameter, model);
     }
@@ -195,7 +195,7 @@ public class MainController {
     private String editParameter(
             ParameterEntity parameter, Model model
     ) {
-        sessionStorage.setEditingEntity(parameter);
+        sessionStorage.setEditingEntity(ParameterEntity.class, parameter);
 
         model.addAttribute("types", getParameterTypes());
         model.addAttribute("parameter",
@@ -227,7 +227,7 @@ public class MainController {
             parameterService.update(savedParameter);
         }
 
-        sessionStorage.setEntityCreating(savedParameter, false);
+        sessionStorage.setEntityCreating(ParameterEntity.class, false);
 
         return "redirect:/#parameters";
     }
@@ -269,7 +269,7 @@ public class MainController {
     private String editQuery(
             QueryEntity query, Model model
     ) {
-        sessionStorage.setEditingEntity(query);
+        sessionStorage.setEditingEntity(QueryEntity.class, query);
 
         model.addAttribute("query",
                 new QueryModel(query)
@@ -322,7 +322,7 @@ public class MainController {
         QueryEntity savedQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
 
         queryService.update(savedQuery);
-        sessionStorage.setEntityCreating(savedQuery, false);
+        sessionStorage.setEntityCreating(QueryEntity.class, false);
 
         return "redirect:/#queries";
     }
@@ -340,7 +340,7 @@ public class MainController {
         ParameterEntity parameter = parameterService.getById(queryParameterModel.getParameterId());
         queryParameter.setParameter(parameter);
 
-        sessionStorage.setEntityCreating(queryParameter, true);
+        sessionStorage.setEntityCreating(QueryParameterEntity.class, true);
 
         return editQueryParameter(
                 queryParameter,
@@ -360,7 +360,7 @@ public class MainController {
             Model model
     ) {
         QueryParameterEntity queryParameter = queryParameterService.getById(id);
-        sessionStorage.setEntityCreating(queryParameter, false);
+        sessionStorage.setEntityCreating(QueryParameterEntity.class, false);
 
         return editQueryParameter(queryParameter, model);
     }
@@ -369,7 +369,7 @@ public class MainController {
             QueryParameterEntity queryParameter,
             Model model
     ) {
-        sessionStorage.setEditingEntity(queryParameter);
+        sessionStorage.setEditingEntity(QueryParameterEntity.class, queryParameter);
 
         model.addAttribute("queryParameter",
                 new QueryParameterModel(queryParameter)
@@ -409,7 +409,7 @@ public class MainController {
             queryParameterService.update(savedQueryParameter);
         }
 
-        sessionStorage.setEntityCreating(savedQueryParameter, false);
+        sessionStorage.setEntityCreating(QueryParameterEntity.class, false);
 
         QueryEntity editingQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
 

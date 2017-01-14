@@ -96,7 +96,7 @@ public class MainController {
         model.addAttribute("types", getParameterTypes());
 
         model.addAttribute("queries", queryService.getAll());
-        model.addAttribute("states", QueryEntity.QUERY_STATES);
+        model.addAttribute("queryStates", QueryEntity.QUERY_STATES);
 
         return "main";
     }

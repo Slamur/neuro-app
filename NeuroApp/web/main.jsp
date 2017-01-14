@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
   <head>
       <title>Neuro app entities</title>
@@ -136,9 +137,9 @@
                                   <input type="submit" value="Delete"/>
                               </form:form>
 
-                              <c:if test="${query.stateType < states.length - 1}">
+                              <c:if test="${query.stateType < fn:length(queryStates) - 1}">
                                   <form:form action="/change_query_state/${query.id}" method="get">
-                                      <input type="submit" value="${states[query.stateType + 1]}"/>
+                                      <input type="submit" value="${queryStates[query.stateType + 1]}"/>
                                   </form:form>
                               </c:if>
                           </td>

@@ -36,7 +36,7 @@
               </c:forEach>
             </form:select>
           </p>
-          <p><input type="submit" value="Save"></p>
+          <p><input type="submit" class="btn btn-primary" value="Save"></p>
       </form:form>
   </div>
   </body>

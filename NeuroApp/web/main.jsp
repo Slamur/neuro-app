@@ -33,7 +33,7 @@
       <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="dictionaries">
               <form:form action="/create_dictionary" method="get">
-                  <input type="submit" value="Add dictionary record"/>
+                  <input type="submit" class="btn btn-success" value="Add dictionary record"/>
               </form:form>
 
               <c:forEach items="${dictionaries}" var="dictionariesByType">
@@ -54,11 +54,11 @@
                               <td>${dictionary.description}</td>
                               <td>
                                   <form:form action="/edit_dictionary/${dictionary.id}" method="get">
-                                      <input type="submit" value="Edit"/>
+                                      <input type="submit" class="btn btn-primary" value="Edit"/>
                                   </form:form>
 
                                   <form:form action="/delete_dictionary/${dictionary.id}" method="get">
-                                      <input type="submit" value="Delete"/>
+                                      <input type="submit" class="btn btn-primary" value="Delete"/>
                                   </form:form>
                               </td>
                           </tr>
@@ -70,7 +70,7 @@
 
           <div role="tabpanel" class="tab-pane" id="parameters">
               <form:form action="/create_parameter" method="get">
-                  <input type="submit" value="Add parameter"/>
+                  <input type="submit" class="btn btn-success" value="Add parameter"/>
               </form:form>
 
               <table class="table table-striped">
@@ -92,11 +92,11 @@
                           <td>${types.get(parameter.typeId - 2).name}</td>
                           <td>
                               <form:form action="/edit_parameter/${parameter.id}" method="get">
-                                  <input type="submit" value="Edit"/>
+                                  <input type="submit" class="btn btn-primary" value="Edit"/>
                               </form:form>
 
                               <form:form action="/delete_parameter/${parameter.id}" method="get">
-                                  <input type="submit" value="Delete"/>
+                                  <input type="submit" class="btn btn-primary" value="Delete"/>
                               </form:form>
                           </td>
                       </tr>
@@ -106,7 +106,7 @@
 
           <div role="tabpanel" class="tab-pane" id="queries">
               <form:form action="/create_query" method="get">
-                  <input type="submit" value="Add query"/>
+                  <input type="submit" class="btn btn-success" value="Add query"/>
               </form:form>
 
               <table class="table table-striped">
@@ -130,16 +130,16 @@
                           <td>${query.resultString}</td>
                           <td>
                               <form:form action="/edit_query/${query.id}" method="get">
-                                  <input type="submit" value="Edit parameters"/>
+                                  <input type="submit" class="btn btn-primary" value="Edit parameters"/>
                               </form:form>
 
                               <form:form action="/delete_query/${query.id}" method="get">
-                                  <input type="submit" value="Delete"/>
+                                  <input type="submit" class="btn btn-primary" value="Delete"/>
                               </form:form>
 
                               <c:if test="${query.stateType < fn:length(queryStates) - 1}">
                                   <form:form action="/change_query_state/${query.id}" method="get">
-                                      <input type="submit" value="${queryStates[query.stateType + 1]}"/>
+                                      <input type="submit" class="btn btn-primary" value="${queryStates[query.stateType + 1]}"/>
                                   </form:form>
                               </c:if>
                           </td>

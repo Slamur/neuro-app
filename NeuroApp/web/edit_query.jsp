@@ -15,17 +15,17 @@
   <body>
   <div class="container">
       <form:form method="post" action="/save_query" modelAttribute="query">
-          <input type="submit" value="Save query">
+          <input type="submit" class="btn btn-primary" value="Save query">
       </form:form>
 
       <form:form action="/create_query_parameter" method="post" modelAttribute="queryParameter">
-          <input type="submit" value="Add query parameter"/>
-
           <form:select name="parameters" path="parameterId">
               <c:forEach var="parameter" items="${parameters}">
                   <form:option value="${parameter.id}">${parameter.name}</form:option>
               </c:forEach>
           </form:select>
+
+          <input type="submit" class="btn btn-success" value="Add query parameter"/>
       </form:form>
 
       <table class="table table-striped">
@@ -52,11 +52,11 @@
                   </td>
                   <td>
                       <form:form action="/edit_query_parameter/${queryParameter.id}" method="get">
-                          <input type="submit" value="Edit"/>
+                          <input type="submit" class="btn btn-primary" value="Edit"/>
                       </form:form>
 
                       <form:form action="/delete_query_parameter/${queryParameter.id}" method="get">
-                          <input type="submit" value="Delete"/>
+                          <input type="submit" class="btn btn-primary" value="Delete"/>
                       </form:form>
                   </td>
               </tr>

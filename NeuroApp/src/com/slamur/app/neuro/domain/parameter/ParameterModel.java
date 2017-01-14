@@ -15,7 +15,7 @@ public class ParameterModel {
         this.name = entity.getName();
         this.description = entity.getDescription();
 
-        this.typeId = Math.abs(entity.getTypeId());
+        this.typeId = entity.getTypeId();
     }
 
     public String getName() {

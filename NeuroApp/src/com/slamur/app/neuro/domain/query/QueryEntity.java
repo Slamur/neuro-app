@@ -22,7 +22,7 @@ public class QueryEntity extends DomainEntityImpl {
     private int stateType;
     private String resultString;
 
-    private List<QueryParameterEntity> queryParameters;
+    private List<QueryParameterEntity> parameters;
 
     @Id
     @Column(name = "id")
@@ -88,12 +88,12 @@ public class QueryEntity extends DomainEntityImpl {
     }
 
     @OneToMany(targetEntity = QueryParameterEntity.class)
-    public List<QueryParameterEntity> getQueryParameters() {
-        return queryParameters;
+    public List<QueryParameterEntity> getParameters() {
+        return parameters;
     }
 
-    public void setQueryParameters(List<QueryParameterEntity> queryParameters) {
-        this.queryParameters = queryParameters;
+    public void setParameters(List<QueryParameterEntity> queryParameters) {
+        this.parameters = queryParameters;
     }
 
     @Override

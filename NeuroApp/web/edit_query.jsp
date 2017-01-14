@@ -37,7 +37,7 @@
               <td>Actions</td>
           </tr>
           </thead>
-          <c:forEach items="${query.parameters}" var="queryParameter" varStatus="loop">
+          <c:forEach items="${queryParameters}" var="queryParameter" varStatus="loop">
               <tr>
                   <td>${loop.count}</td>
                   <td>${queryParameter.parameter.name}</td>

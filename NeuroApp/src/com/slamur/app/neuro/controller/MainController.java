@@ -137,7 +137,13 @@ public class MainController {
     public String deleteDictionary(
             @PathVariable("id") Integer id
     ) {
-        dictionaryService.remove(id);
+        DictionaryEntity dictionary = dictionaryService.getById(id);
+
+        boolean canDeleteDictionary = !queryParameterService.hasAnyWithReferenceValue(dictionary);
+        if (canDeleteDictionary) {
+            dictionaryService.remove(id);
+        }
+
         return "redirect:/#dictionaries";
     }
 

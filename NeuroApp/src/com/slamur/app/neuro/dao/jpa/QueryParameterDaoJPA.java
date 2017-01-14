@@ -34,4 +34,17 @@ public class QueryParameterDaoJPA
         );
         return (List<QueryParameterEntity>)query.getResultList();
     }
+
+    @Override
+    public boolean hasAnyWithParameterTypeAndValue(Integer parameterTypeId, Integer dictionaryId) {
+        Query query = getEntityManager().createQuery(
+                String.format(
+                        "SELECT e FROM %s e where e.parameter.typeId = %d and e.value = \"%s\"",
+                        entityClassName,
+                        parameterTypeId,
+                        Integer.toString(dictionaryId))
+        );
+
+        return query.getResultList().size() > 0;
+    }
 }

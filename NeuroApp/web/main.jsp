@@ -88,7 +88,7 @@
                           <td>${parameter.id}</td>
                           <td>${parameter.name}</td>
                           <td>${parameter.description}</td>
-                          <td>${types.get(parameter.typeId - 1).name}</td>
+                          <td>${types.get(parameter.typeId - 2).name}</td>
                           <td>
                               <form:form action="/edit_parameter/${parameter.id}" method="get">
                                   <input type="submit" value="Edit"/>

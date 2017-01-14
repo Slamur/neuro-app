@@ -275,8 +275,16 @@ public class MainController {
                 new QueryModel(query)
         );
 
+        model.addAttribute("queryParameter",
+                new QueryParameterModel()
+        );
+
         model.addAttribute("queryParameters",
                 queryParameterService.getAllByQuery(query)
+        );
+
+        model.addAttribute("parameters",
+                parameterService.getAll()
         );
 
         model.addAttribute("valueNames", getValueNames());
@@ -331,11 +339,14 @@ public class MainController {
         return parameterService.getAll();
     }
 
-    @RequestMapping(path = "/create_query_parameter", method = RequestMethod.GET)
+    @RequestMapping(path = "/create_query_parameter", method = RequestMethod.POST)
     public String createQueryParameter(
             @ModelAttribute("queryParameter") QueryParameterModel queryParameterModel,
             Model model) {
         QueryParameterEntity queryParameter = new QueryParameterEntity();
+
+        QueryEntity editingQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
+        queryParameter.setQueryId(editingQuery.id);
 
         ParameterEntity parameter = parameterService.getById(queryParameterModel.getParameterId());
         queryParameter.setParameter(parameter);

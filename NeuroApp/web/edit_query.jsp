@@ -17,7 +17,7 @@
           <input type="submit" value="Save query">
       </form:form>
 
-      <form:form action="/create_query_parameter" method="get" modelAttribute="queryParameter">
+      <form:form action="/create_query_parameter" method="post" modelAttribute="queryParameter">
           <input type="submit" value="Add query parameter"/>
 
           <form:select name="parameters" path="parameterId">

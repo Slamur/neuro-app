@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "query_parameter", schema = "public", catalog = "neuroapp")
 public class QueryParameterEntity extends DomainEntityImpl {
 
-    private Integer id;
-    private int queryId;
-    private ParameterEntity parameter;
-    private String valueString;
+    public Integer id;
+    public int queryId;
+    public ParameterEntity parameter;
+    public String valueString;
 
     @Id
     @Column(name = "id")

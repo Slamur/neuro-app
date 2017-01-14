@@ -15,7 +15,8 @@
   <body>
   <div class="container">
       <form:form method="post" action="/save_query" modelAttribute="query">
-          <input type="submit" class="btn btn-primary" value="Save query">
+          <input type="submit" class="btn btn-primary"
+                 value="Save query" style="margin-top: 25px">
       </form:form>
 
       <form:form action="/create_query_parameter" method="post" modelAttribute="queryParameter">

@@ -33,7 +33,8 @@
       <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="dictionaries">
               <form:form action="/create_dictionary" method="get">
-                  <input type="submit" class="btn btn-success" value="Add dictionary record"/>
+                  <input type="submit" class="btn btn-success"
+                         value="Add dictionary record" style="margin-top: 25px"/>
               </form:form>
 
               <c:forEach items="${dictionaries}" var="dictionariesByType">
@@ -70,7 +71,8 @@
 
           <div role="tabpanel" class="tab-pane" id="parameters">
               <form:form action="/create_parameter" method="get">
-                  <input type="submit" class="btn btn-success" value="Add parameter"/>
+                  <input type="submit" class="btn btn-success"
+                         value="Add parameter" style="margin-top: 25px"/>
               </form:form>
 
               <table class="table table-striped">
@@ -106,7 +108,8 @@
 
           <div role="tabpanel" class="tab-pane" id="queries">
               <form:form action="/create_query" method="get">
-                  <input type="submit" class="btn btn-success" value="Add query"/>
+                  <input type="submit" class="btn btn-success"
+                         value="Add query" style="margin-top: 25px"/>
               </form:form>
 
               <table class="table table-striped">

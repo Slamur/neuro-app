@@ -69,11 +69,11 @@ public class QueryEntity extends DomainEntityImpl {
 
     @Basic
     @Column(name = "state_type")
-    public Integer getStateType() {
+    public int getStateType() {
         return stateType;
     }
 
-    public void setStateType(Integer stateType) {
+    public void setStateType(int stateType) {
         this.stateType = stateType;
     }
 

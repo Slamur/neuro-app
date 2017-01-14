@@ -71,7 +71,7 @@ public class QueryParameterEntity extends DomainEntityImpl {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = super.hashCode();
         result = ENTITY_HASH_BASE * result + queryId;
         result = ENTITY_HASH_BASE * result + parameter.getId();
         result = ENTITY_HASH_BASE * result + (valueString != null ? valueString.hashCode() : 0);

@@ -113,7 +113,7 @@ public class QueryEntity extends DomainEntityImpl {
 
     @Override
     public int hashCode() {
-        int hash = id;
+        int hash = super.hashCode();
         hash = ENTITY_HASH_BASE * hash + (timeAdded != null ? timeAdded.hashCode() : 0);
         hash = ENTITY_HASH_BASE * hash + (timeStarted != null ? timeStarted.hashCode() : 0);
         hash = ENTITY_HASH_BASE * hash + (timeFinished != null ? timeFinished.hashCode() : 0);

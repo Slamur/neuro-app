@@ -57,7 +57,7 @@
                       </form:form>
 
                       <form:form action="/delete_query_parameter/${queryParameter.id}" method="get">
-                          <input type="submit" class="btn btn-primary" value="Delete"/>
+                          <input type="submit" class="btn btn-danger" value="Delete"/>
                       </form:form>
                   </td>
               </tr>

@@ -59,7 +59,7 @@
                                   </form:form>
 
                                   <form:form action="/delete_dictionary/${dictionary.id}" method="get">
-                                      <input type="submit" class="btn btn-primary" value="Delete"/>
+                                      <input type="submit" class="btn btn-danger" value="Delete"/>
                                   </form:form>
                               </td>
                           </tr>
@@ -98,7 +98,7 @@
                               </form:form>
 
                               <form:form action="/delete_parameter/${parameter.id}" method="get">
-                                  <input type="submit" class="btn btn-primary" value="Delete"/>
+                                  <input type="submit" class="btn btn-danger" value="Delete"/>
                               </form:form>
                           </td>
                       </tr>
@@ -137,12 +137,12 @@
                               </form:form>
 
                               <form:form action="/delete_query/${query.id}" method="get">
-                                  <input type="submit" class="btn btn-primary" value="Delete"/>
+                                  <input type="submit" class="btn btn-danger" value="Delete"/>
                               </form:form>
 
                               <c:if test="${query.stateType < fn:length(queryStates) - 1}">
                                   <form:form action="/change_query_state/${query.id}" method="get">
-                                      <input type="submit" class="btn btn-primary" value="${queryStates[query.stateType + 1]}"/>
+                                      <input type="submit" class="btn btn-success" value="${queryStates[query.stateType + 1]}"/>
                                   </form:form>
                               </c:if>
                           </td>

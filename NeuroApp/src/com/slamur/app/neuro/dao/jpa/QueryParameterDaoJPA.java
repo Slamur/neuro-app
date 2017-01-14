@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Component
 public class QueryParameterDaoJPA
@@ -23,5 +25,13 @@ public class QueryParameterDaoJPA
     @Override
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    @Override
+    public List<QueryParameterEntity> getAllByQueryId(Integer queryId) {
+        Query query = getEntityManager().createQuery(
+                String.format("SELECT e FROM %s e where e.queryId = %d ORDER BY e.id ASC", entityClassName, queryId)
+        );
+        return (List<QueryParameterEntity>)query.getResultList();
     }
 }

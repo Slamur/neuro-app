@@ -15,12 +15,12 @@ public class QueryEntity extends DomainEntityImpl {
             "Add", "Start", "Finish"
     };
 
-    private Integer id;
+    public Integer id;
 
-    private Timestamp timeAdded, timeStarted, timeFinished;
+    public Timestamp timeAdded, timeStarted, timeFinished;
 
-    private int stateType;
-    private String resultString;
+    public int stateType;
+    public String resultString;
 
     private List<QueryParameterEntity> parameters;
 

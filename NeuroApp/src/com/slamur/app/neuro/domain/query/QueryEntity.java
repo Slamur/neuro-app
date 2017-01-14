@@ -87,15 +87,6 @@ public class QueryEntity extends DomainEntityImpl {
         this.resultString = resultFile;
     }
 
-    @OneToMany(targetEntity = QueryParameterEntity.class)
-    public List<QueryParameterEntity> getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(List<QueryParameterEntity> queryParameters) {
-        this.parameters = queryParameters;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (!super.equals(obj)) return false;

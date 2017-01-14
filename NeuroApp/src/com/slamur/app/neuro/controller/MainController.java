@@ -308,7 +308,15 @@ public class MainController {
     public String deleteQuery(
             @PathVariable("id") Integer id
     ) {
-        queryService.remove(id);
+        QueryEntity query = queryService.getById(id);
+
+        List<QueryParameterEntity> queryParameters = queryParameterService.getAllByQuery(query);
+        for (QueryParameterEntity queryParameter : queryParameters) {
+            queryParameterService.remove(queryParameter);
+        }
+
+        queryService.remove(query);
+
         return "redirect:/#queries";
     }
 

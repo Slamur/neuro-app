@@ -83,9 +83,9 @@
                       <td>Actions</td>
                   </tr>
                   </thead>
-                  <c:forEach items="${parameters}" var="parameter">
+                  <c:forEach items="${parameters}" var="parameter" varStatus="loop">
                       <tr>
-                          <td>${parameter.id}</td>
+                          <td>${loop.count}</td>
                           <td>${parameter.name}</td>
                           <td>${parameter.description}</td>
                           <td>${types.get(parameter.typeId - 2).name}</td>

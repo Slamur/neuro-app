@@ -129,7 +129,7 @@
                           <td>${query.resultString}</td>
                           <td>
                               <form:form action="/edit_query/${query.id}" method="get">
-                                  <input type="submit" value="Edit"/>
+                                  <input type="submit" value="Edit parameters"/>
                               </form:form>
 
                               <form:form action="/delete_query/${query.id}" method="get">

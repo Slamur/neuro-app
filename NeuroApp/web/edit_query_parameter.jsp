@@ -5,12 +5,12 @@
 <html>
   <head>
       <title>Query parameter editing</title>
-      <script type="text/javascript" src="resources/js/jquery-3.1.1.js"></script>
-      <script type="text/javascript" src="resources/js/jquery.validate.js"></script>
+      <script type="text/javascript" src="/resources/js/jquery-3.1.1.js"></script>
+      <script type="text/javascript" src="/resources/js/jquery.validate.js"></script>
 
-      <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
+      <spring:url value="/resources/css/bootstrap.css" var="bootstrap"/>
           <link href="${bootstrap}" rel="stylesheet" />
-      <script type="text/javascript" src="resources/js/bootstrap-3.3.5.js"></script>
+      <script type="text/javascript" src="/resources/js/bootstrap-3.3.5.js"></script>
   </head>
   <body>
   <div class="container">

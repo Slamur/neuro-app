@@ -27,16 +27,23 @@
   <body>
   <div class="container">
       <form:form id="edit_form" method="post" action="/save_dictionary" modelAttribute="dictionary">
-          <p><form:input id="name" type="text" title="Name" path="name"/></p>
-          <p><form:textarea name="description" title="Description" path="description"/></p>
-          <p>
-            <form:select name="types" path="typeId">
-              <c:forEach var="type" items="${types}">
-                  <form:option value="${type.id}">${type.name}</form:option>
-              </c:forEach>
-            </form:select>
-          </p>
-          <p><input type="submit" value="Save"></p>
+          <div class="form-group">
+              <label for="name">Name:</label>
+              <form:input class="form-control" id="name" type="text" path="name"/>
+          </div>
+          <div class="form-group">
+              <label for="description">Description:</label>
+              <form:textarea class="form-control" id="description" path="description"/>
+          </div>
+          <div class="form-group">
+              <label for="types">Dictionary types:</label>
+              <form:select class="form-control" id="types" name="types" path="typeId">
+                  <c:forEach var="type" items="${types}">
+                      <form:option value="${type.id}">${type.name}</form:option>
+                  </c:forEach>
+              </form:select>
+          </div>
+          <p><input type="submit" class="btn btn-primary" value="Save"></p>
       </form:form>
 
       <%--rows="10" cols="45"--%>

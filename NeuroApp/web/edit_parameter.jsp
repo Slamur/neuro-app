@@ -27,7 +27,7 @@
   <body>
   <div class="container">
       <form:form id="edit_form" method="post" action="/save_parameter" modelAttribute="parameter">
-          <p><form:input id="name" type="text" required="true" title="Name" path="name"/></p>
+          <p><form:input id="name" type="text" title="Name" path="name"/></p>
           <p><form:textarea name="description" title="Description" path="description"/></p>
           <p>
             <form:select name="types" path="typeId">

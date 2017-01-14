@@ -27,7 +27,7 @@
   <body>
   <div class="container">
       <form:form id="edit_form" method="post" action="/save_dictionary" modelAttribute="dictionary">
-          <p><form:input id="name" type="text" required="" title="Name" path="name"/></p>
+          <p><form:input id="name" type="text" title="Name" path="name"/></p>
           <p><form:textarea name="description" title="Description" path="description"/></p>
           <p>
             <form:select name="types" path="typeId">

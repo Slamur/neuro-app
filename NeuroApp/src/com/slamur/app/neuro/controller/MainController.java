@@ -7,6 +7,8 @@ import com.slamur.app.neuro.domain.parameter.ParameterEntity;
 import com.slamur.app.neuro.domain.parameter.ParameterModel;
 import com.slamur.app.neuro.domain.query.QueryEntity;
 import com.slamur.app.neuro.domain.query.QueryModel;
+import com.slamur.app.neuro.domain.query.QueryParameterEntity;
+import com.slamur.app.neuro.domain.query.QueryParameterModel;
 import com.slamur.app.neuro.service.*;
 import com.slamur.app.neuro.session.SessionStorage;
 import com.slamur.lib.domain.DomainEntity;
@@ -39,6 +41,8 @@ public class MainController {
 
     private final QueryService queryService;
 
+    private final QueryParameterService queryParameterService;
+
     private final SessionStorage sessionStorage;
 
     @Autowired
@@ -48,6 +52,7 @@ public class MainController {
             ParameterService parameterService,
             PrimitiveTypeService primitiveTypeService,
             QueryService queryService,
+            QueryParameterService queryParameterService,
             SessionStorage sessionStorage
     ) {
         this.dictionaryService = dictionaryService;
@@ -55,6 +60,7 @@ public class MainController {
         this.parameterService = parameterService;
         this.primitiveTypeService = primitiveTypeService;
         this.queryService = queryService;
+        this.queryParameterService = queryParameterService;
         this.sessionStorage = sessionStorage;
     }
 
@@ -229,9 +235,11 @@ public class MainController {
     @RequestMapping(path = "/create_query", method = RequestMethod.GET)
     public String createQuery(Model model) {
         QueryEntity query = new QueryEntity();
-        sessionStorage.setEntityCreating(query, true);
 
-        return editQuery(query, model);
+        query.setTimeAdded(getCurrentDateTime());
+        queryService.create(query);
+
+        return "redirect:/#queries";
     }
 
     @RequestMapping(path = "/edit_query/{id}", method = RequestMethod.GET)
@@ -240,9 +248,22 @@ public class MainController {
             Model model
     ) {
         QueryEntity query = queryService.getById(id);
-        sessionStorage.setEntityCreating(query, false);
-
         return editQuery(query, model);
+    }
+
+    private Map<String, String> getValueNames() {
+        Map<String, String> valueNames = new HashMap<>();
+
+        for (DictionaryEntity dictionary : dictionaryService.getAll()) {
+            valueNames.put(
+                    Integer.toString(
+                            dictionary.getId()
+                    ),
+                    dictionary.getName()
+            );
+        }
+
+        return valueNames;
     }
 
     private String editQuery(
@@ -253,6 +274,8 @@ public class MainController {
         model.addAttribute("query",
                 new QueryModel(query)
         );
+
+        model.addAttribute("valueNames", getValueNames());
 
         return "edit_query";
     }
@@ -298,16 +321,99 @@ public class MainController {
     public String saveQuery(@ModelAttribute("query") QueryModel queryModel) {
         QueryEntity savedQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
 
-        if (sessionStorage.isEntityCreating(QueryEntity.class)) {
-            savedQuery.setTimeAdded(getCurrentDateTime());
-            queryService.create(savedQuery);
-        } else {
-            queryService.update(savedQuery);
-        }
-
+        queryService.update(savedQuery);
         sessionStorage.setEntityCreating(savedQuery, false);
 
         return "redirect:/#queries";
+    }
+
+    private List<ParameterEntity> getParameters() {
+        return parameterService.getAll();
+    }
+
+    @RequestMapping(path = "/create_query_parameter", method = RequestMethod.GET)
+    public String createQueryParameter(
+            @ModelAttribute("queryParameter") QueryParameterModel queryParameterModel,
+            Model model) {
+        QueryParameterEntity queryParameter = new QueryParameterEntity();
+
+        ParameterEntity parameter = parameterService.getById(queryParameterModel.getParameterId());
+        queryParameter.setParameter(parameter);
+
+        sessionStorage.setEntityCreating(queryParameter, true);
+
+        return editQueryParameter(
+                queryParameter,
+                model
+        );
+    }
+
+    private List<DictionaryEntity> getValues(QueryParameterEntity queryParameter) {
+        return dictionaryService.getAllByType(
+                queryParameter.getParameter().getTypeId()
+        );
+    }
+
+    @RequestMapping(path = "/edit_query_parameter/{id}", method = RequestMethod.GET)
+    public String editQueryParameter(
+            @PathVariable("id") Integer id,
+            Model model
+    ) {
+        QueryParameterEntity queryParameter = queryParameterService.getById(id);
+        sessionStorage.setEntityCreating(queryParameter, false);
+
+        return editQueryParameter(queryParameter, model);
+    }
+
+    private String editQueryParameter(
+            QueryParameterEntity queryParameter,
+            Model model
+    ) {
+        sessionStorage.setEditingEntity(queryParameter);
+
+        model.addAttribute("queryParameter",
+                new QueryParameterModel(queryParameter)
+        );
+
+        model.addAttribute("parameter",
+                new ParameterModel(queryParameter.getParameter())
+        );
+
+        model.addAttribute("values", getValues(queryParameter));
+
+        return "edit_query_parameter";
+    }
+
+    @RequestMapping(path = "/delete_query_parameter/{id}", method = RequestMethod.GET)
+    public String deleteQueryParameter(
+            @PathVariable("id") Integer id
+    ) {
+        queryParameterService.remove(id);
+
+        QueryEntity editingQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
+
+        return "redirect:/edit_query/" + editingQuery.getId();
+    }
+
+    @RequestMapping(path = "/save_query_parameter", method = RequestMethod.POST)
+    public String saveQueryParameter(
+            @ModelAttribute("queryParameter") QueryParameterModel queryParameterModel
+    ) {
+        QueryParameterEntity savedQueryParameter = (QueryParameterEntity) sessionStorage.getEditingEntity(QueryParameterEntity.class);
+
+        savedQueryParameter.setValue(queryParameterModel.getStringValue());
+
+        if (sessionStorage.isEntityCreating(QueryParameterEntity.class)) {
+            queryParameterService.create(savedQueryParameter);
+        } else {
+            queryParameterService.update(savedQueryParameter);
+        }
+
+        sessionStorage.setEntityCreating(savedQueryParameter, false);
+
+        QueryEntity editingQuery = (QueryEntity)sessionStorage.getEditingEntity(QueryEntity.class);
+
+        return "redirect:/edit_query/" + editingQuery.getId();
     }
 
     private Timestamp getCurrentDateTime() {

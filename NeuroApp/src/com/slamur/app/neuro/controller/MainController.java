@@ -293,10 +293,6 @@ public class MainController {
             @PathVariable("id") Integer id
     ) {
         QueryEntity query = queryService.getById(id);
-        query.setStateType(
-                query.getStateType() + 1
-        );
-
         switch (query.getStateType()) {
             case QueryEntity.ADDED:
                 query.setStateType(QueryEntity.STARTED);

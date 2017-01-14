@@ -25,9 +25,9 @@
                 <form:radiobutton path="booleanValue" value="true"/> True
             </c:if>
             <c:if test="${parameter.typeId > 4}">
-                <form:select name="values" path="intValue">
-                    <c:forEach var="value" items="${values}">
-                        <form:option value="${value.id}">${value.name}</form:option>
+                <form:select name="values" path="idValue">
+                    <c:forEach var="dictonaryValue" items="${dictionaryValues}">
+                        <form:option value="${dictonaryValue.id}">${dictonaryValue.name}</form:option>
                     </c:forEach>
                 </form:select>
             </c:if>

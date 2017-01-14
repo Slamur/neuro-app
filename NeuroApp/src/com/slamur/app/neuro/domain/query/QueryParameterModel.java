@@ -32,13 +32,13 @@ public class QueryParameterModel {
         this.value = value;
     }
 
-    public int getIntValue() {
+    public int getIdValue() {
         return (value == null || value.isEmpty())
-                ? 0
+                ? 1
                 : Integer.parseInt(value);
     }
 
-    public void setIntValue(int value) {
+    public void setIdValue(int value) {
         this.value = Integer.toString(value);
     }
 

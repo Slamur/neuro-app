@@ -390,7 +390,7 @@ public class MainController {
                 new ParameterModel(queryParameter.getParameter())
         );
 
-        model.addAttribute("values", getValues(queryParameter));
+        model.addAttribute("dictionaryValues", getValues(queryParameter));
 
         return "edit_query_parameter";
     }

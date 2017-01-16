@@ -20,12 +20,14 @@
       </form:form>
 
       <form:form action="/create_query_parameter" method="post" modelAttribute="queryParameter">
-          <form:select name="parameters" path="parameterId">
-              <c:forEach var="parameter" items="${parameters}">
-                  <form:option value="${parameter.id}">${parameter.name}</form:option>
-              </c:forEach>
-          </form:select>
-
+          <div class="form-group">
+              <label for="parameters">Parameters: </label>
+              <form:select class="form-control" id="parameters" name="parameters" path="parameterId">
+                  <c:forEach var="parameter" items="${parameters}">
+                      <form:option value="${parameter.id}">${parameter.name}</form:option>
+                  </c:forEach>
+              </form:select>
+          </div>
           <input type="submit" class="btn btn-success" value="Add query parameter"/>
       </form:form>
 

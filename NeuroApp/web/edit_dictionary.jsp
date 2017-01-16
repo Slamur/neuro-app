@@ -19,6 +19,11 @@
                       name : {
                           required : true
                       }
+                  },
+                  messages : {
+                      name : {
+                          required : "Name can't be empty"
+                      }
                   }
               });
           });
@@ -45,8 +50,6 @@
           </div>
           <p><input type="submit" class="btn btn-primary" value="Save"></p>
       </form:form>
-
-      <%--rows="10" cols="45"--%>
 
 
   </div>
